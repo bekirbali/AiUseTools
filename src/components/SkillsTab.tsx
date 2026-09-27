@@ -118,9 +118,9 @@ export default function SkillsTab({
       </div>
 
       {/* Filters and Search Bar */}
-      <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+      <div className="flex flex-col xl:flex-row items-stretch xl:items-center justify-between gap-4">
         {/* Category Pills */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-none">
+        <div className="flex flex-wrap items-center gap-2">
           {categories.map((cat) => {
             const Icon = cat.icon;
             const isActive = selectedCategory === cat.key;
@@ -129,7 +129,7 @@ export default function SkillsTab({
                 key={cat.key}
                 type="button"
                 onClick={() => setSelectedCategory(cat.key)}
-                className={`px-3.5 py-2 rounded-lg text-xs font-mono font-medium flex items-center gap-2 whitespace-nowrap transition-colors duration-150 cursor-pointer focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none ${
+                className={`px-3.5 py-2 rounded-lg text-xs font-mono font-medium flex items-center gap-2 transition-colors duration-150 cursor-pointer focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none ${
                   isActive
                     ? "glass-pill-active text-cyan-200"
                     : "glass-pill text-zinc-400 hover:text-zinc-200 hover:bg-white/[0.08]"
@@ -143,7 +143,7 @@ export default function SkillsTab({
         </div>
 
         {/* Search input */}
-        <div className="relative min-w-[260px] lg:w-80">
+        <div className="relative w-full xl:w-80 shrink-0">
           <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" aria-hidden="true" />
           <input
             type="text"
@@ -216,7 +216,7 @@ export default function SkillsTab({
                   />
                 </div>
                 <div className="p-3 rounded-lg bg-[#090b10] border border-cyan-500/20 font-mono text-xs text-cyan-300 overflow-x-auto flex items-center justify-between">
-                  <code className="whitespace-pre select-all text-cyan-200">
+                  <code suppressHydrationWarning className="whitespace-pre select-all text-cyan-200">
                     $ {skill.installCommand}
                   </code>
                 </div>
@@ -239,7 +239,7 @@ export default function SkillsTab({
                   />
                 </div>
                 <div className="p-2.5 rounded-lg bg-black/40 border border-white/5 font-mono text-xs text-zinc-300 overflow-x-auto">
-                  <code className="whitespace-pre-wrap select-all">
+                  <code suppressHydrationWarning className="whitespace-pre-wrap select-all">
                     {skill.usageExample}
                   </code>
                 </div>

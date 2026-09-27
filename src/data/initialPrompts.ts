@@ -2,101 +2,230 @@ import { SocialPromptItem } from "@/types";
 
 export const initialPrompts: SocialPromptItem[] = [
   {
-    id: "prompt-car-1",
+    id: "prompt-main-automotive-cinematic-video",
     channel: "araba",
     channelName: "Otomobil & Hypercar (Reels / TikTok)",
-    title: "Yağmurlu Tokyo'da Porsche GT3 RS (Satin Midnight Purple)",
-    prompt: "Cinematic 9:16 vertical action shot of a 2024 Porsche 911 GT3 RS with custom Satin Midnight Purple liquid vinyl wrap and exposed forged carbon fiber aero wing. Parked on wet asphalt in Shinjuku Tokyo at night. Glowing neon reflections of violet and cyan on the wet asphalt. Water droplets beaded on the deep purple metallic hood. Shot on ARRI Alexa Mini, 50mm anamorphic lens, shallow depth of field, raytraced reflections, ultra-photorealistic, 8k resolution, editorial automotive magazine cover --ar 9:16 --v 6.1 --style raw",
-    negativePrompt: "cartoon, low resolution, blurry, distorted body lines, missing headlights, oversaturated fake reflections",
-    targetModel: "Midjourney v6.1",
+    title: "Main // \"BU GERÇEK DEĞİL\" Şok Açılışlı Sinematik Video Promptu",
+    prompt: `[ARAÇ] = 
+[MATERYAL] = 
+Tamamı çarpıcı ve özel bir [MATERYAL] ile kaplanmış bir [ARAÇ] içeren, hiper gerçekçi ve sinematik lüks otomobil tanıtım videosu oluştur.
+Malzeme aracın tüm dış gövdesini eksiksiz ve kusursuz şekilde kaplamalı; her kıvrımını, panel aralığını ve aerodinamik çizgisini takip etmeli. Yüzey gerçekçi doku derinliği ve fiziksel doğru yansımalara sahip olmalı.
+Görsel ve Malzeme Detayları: [MATERYAL] kaplama son derece detaylı, dokunsal, keskin speküler yansımalar ile kesintisiz görünmeli. Dış tasarımı cilalı krom/altın detaylar, agresif özel egzoz, premium özel jantlar ve kristal berraklığında hafif renkli camlarla tamamla.
+Mekân: Ultra temiz, karanlık lüks showroom, premium siyah zemin, hafif atmosferik sis, mimari tavan ızgaraları.
+Sahne Sıralaması:
+1. HOOK - ŞOK AÇILIŞ (0-1.5sn): Videoya aracın en imkansız detayının aşırı yakın makro çekimiyle başla. [MATERYAL] dokusunun en şok edici kısmı. Kamera aniden zoom-in. Hafif kamera sarsıntısı. Ekranda büyük beyaz yazı belirsin: "BU GERÇEK DEĞİL"
+2. Malzeme Dokusu Makro: Ultra yakın makro, kamera [MATERYAL] yüzeyi üzerinde yavaşça ilerlesin. Mikro detaylar, speküler yansımalar.
+3. Yüksek Açı Üstten: Yavaşça öne doğru hareket, kaput ve tavan çizgisi, tavan ışık ızgaralarının yansıması.
+4. Önden Kahraman: Alçak açılı ortalanmış, farlar ve gündüz farları aynı anda yansın.
+5. Dinamik Yan Profil: Akıcı orbital hareket, şekillendirilmiş gövde çizgileri, jantlar, çamurluklar.
+6. İç Mekân: Varsa gösterge paneli, direksiyon, dijital ekranlar, dış [MATERYAL] ile uyumlu iç trim.
+7. Arkadan Kahraman Final: Ortalanmış alçak açılı arka çekim, stop lambaları yanık, difüzör ve egzoz görünür, kamera yavaşça geri çekilsin ve tüm showroom görünsün.
+Final: 3 çeyrek açıda sabitle.
+KURAL: Araç oranlarında, malzemede, jantlarda, aydınlatmada, ortamda HİÇBİR değişiklik olmamalı. Tam görsel tutarlılık.
+Sinematografi: Ultra gerçekçi 8K, ray tracing, hiper detaylı dokular, premium stüdyo aydınlatması, hafif volumetrik sis, sığ alan derinliği, 35mm anamorfik, akıcı stabilize hareketler. 24 FPS, 8 saniye, dikey 9:16. Lüks otomobil reklamı kalitesi.
+Ses: Derin motor rumble, kontrollü egzoz patlaması, sinematik whoosh.`,
+    negativePrompt: "low resolution, 2d cartoon, changing lighting, deformed proportions, inconsistent textures, shaky amateur video, flat audio",
+    targetModel: "Omni 1.1",
     aspectRatio: "9:16",
-    parameters: "--ar 9:16 --v 6.1 --style raw --q 2",
-    tags: ["Porsche", "Tokyo Night", "Midnight Purple", "Reels", "Wet Asphalt"],
-    engagementTip: "Reels / TikTok için arka plana Phonk veya Synthwave koyarak 'Wrap or Paint?' anketi ile paylaşın. Etkileşimi 3x artırır."
+    parameters: "8K, ray tracing, 35mm anamorfik, 24 FPS, 9:16, 8 saniye, ultra-consistent studio rendering",
+    tags: ["Main Prompt", "Viral Hook", "Bu Gerçek Değil", "8K Sinematik", "Lüks Showroom", "Omni 1.1"],
+    tabTitle: "main",
+    engagementTip: "HOOK (0-1.5sn) sahnesinde 'BU GERÇEK DEĞİL' yazısı ve anlık zoom-in, izleyicide durdurma refleksini (stop-scrolling) tetikler. TikTok ve Instagram algoritmalarında en yüksek tamamlama (completion) ve paylaşım oranı getiren ana şablondur.",
   },
   {
-    id: "prompt-car-2",
+    id: "prompt-flowing-material-video",
     channel: "araba",
     channelName: "Otomobil & Hypercar (Reels / TikTok)",
-    title: "Alplerde Viraj Alan BMW M4 Competition (Nardo Grey)",
-    prompt: "Aggressive rolling camera tracking shot of a 2024 BMW M4 Competition G82 in matte Nardo Grey finish with M Performance carbon front canards and ceramic yellow DRLs. Speeding through a serpentine Swiss Alps mountain pass with dramatic mist and early morning sunrise breaking through clouds. Motion blur on the custom forged wheels and asphalt, perfectly sharp car body. Shot on Sony FX3 with 35mm GM lens, dynamic gimbal movement, photorealistic automotive commercial grade --ar 9:16 --v 6.1",
-    negativePrompt: "static wheels, unreal engine slop, plastic texture, fake smoke, 3d render look",
-    targetModel: "Flux.1 Dev",
+    title: "Akan Detay // Çatlak Zırhlı Hiper-Gerçekçi Video Promptu",
+    tabTitle: "akan detay",
+    prompt: `[ARAÇ] = 
+[MATERYAL] = 
+[AKAN DETAY] = 
+
+Tamamı çatlak [MATERYAL] ile kaplanmış ve çatlak aralarından [AKAN DETAY] akan bir [ARAÇ] içeren hiper gerçekçi video oluştur.
+[MATERYAL] mat-siyah keskin yansımalı, [AKAN DETAY] ise kendi ışığını yayan, gerçekçi ısı dalgalanması ve hafif duman/partikül veren yapıda olmalı.
+Görsel Detaylar: [AKAN DETAY] rengine uyumlu kaliperler ve trim.
+Mekân: Karanlık showroom, hafif isli zemin.
+Sahne Sıralaması:
+1. HOOK: Çatlaktan [AKAN DETAY] fışkırma anının makro çekimi, ısı dalgalanması.
+2. Malzeme Makro: [MATERYAL] çatlaklarında [AKAN DETAY] akışı.
+3. Üstten: Çatlak ağı ve [AKAN DETAY] damarlarının yukarıdan görünümü.
+4. Önden Kahraman: Farlar yanık, [AKAN DETAY] turuncu/mavi yansıması [MATERYAL] üzerinde.
+5. Yan Profil Orbital: Yan etekte akan [AKAN DETAY].
+6. İç Mekân: Karbon koltuklarda [AKAN DETAY] renginde dikiş.
+7. Arkadan Final: Egzozdan kıvılcım ve [AKAN DETAY] dumanı.
+KURAL: Çatlak deseni ve [AKAN DETAY] akış yönü hiç değişmemeli. 8K, ray tracing, 9:16, 8 saniye.`,
+    negativePrompt: "deformed car body, changing crack patterns, low resolution, flat lighting, 2d cartoon, blurry fluid physics",
+    targetModel: "Omni 1.1",
     aspectRatio: "9:16",
-    parameters: "--ar 9:16 --guidance 3.5",
-    tags: ["BMW M4", "Nardo Grey", "Swiss Alps", "Rolling Shot", "Morning Sun"],
-    engagementTip: "Videoda egzoz sesi ('Cold start vs Downshift') temalı bir ses efektiyle birleştirin."
+    parameters: "8K, ray tracing, 9:16, 8 saniye, hyper-realistic fluid dynamics",
+    tags: ["Akan Materyal", "Kinetik", "Çatlak Zırh", "Viral Reels", "Showroom", "8K Video"],
+    presetsTitle: "Akan Materyal Seçenekleri",
+    engagementTip: "HOOK sahnesi (çatlaktan fışkırma) izleyicinin ilk 1 saniyede kaydırmasını engeller. Arka plana derin sub-bass veya motor kükreme efekti ekleyip '[ARAÇ] için Lav mı Altın mı?' anketi açın.",
+    presets: [
+      {
+        label: "1. Kor halinde turuncu lav + hafif duman",
+        text: "Kor halinde turuncu lav ve hafif duman",
+        note: "Obsidyen konsepti – Reels'ta en çok yorum alan viral yapı."
+      },
+      {
+        label: "2. Erimiş sıvı altın, akarken katılaşan",
+        text: "Erimiş sıvı altın, akarken katılaşan parçacıklar",
+        note: "Bugatti, Rolls-Royce ve Maybach üzerinde inanılmaz lüks duruyor."
+      },
+      {
+        label: "3. Elektrik mavisi plazma arkları",
+        text: "Elektrik mavisi plazma arkları, çatlaklarda şimşek çakan",
+        note: "Tesla, Porsche Taycan / GT3 RS için birebir yüksek enerji."
+      },
+      {
+        label: "4. Sıvı krom cıva, aynalı şekilde akan",
+        text: "Sıvı krom cıva, aynalı metalik akışkan",
+        note: "Cybertruck ve cyberpunk kitlelerin favorisi."
+      },
+      {
+        label: "5. Neon yeşili toksik sıvı, hafif parlayan",
+        text: "Neon yeşili toksik biyolüminesans sıvı",
+        note: "Agresif BMW M4 / Nissan GT-R Nismo için ideal."
+      },
+      {
+        label: "6. Galaksi nebulası (mor, mavi, yıldız tozlu)",
+        text: "Galaksi nebulası, mor ve kobalt mavisi yıldız tozlu akışkan",
+        note: "Instagram ve TikTok'ta en çok paylaşılan ve kaydedilen efekt."
+      },
+      {
+        label: "7. Erimiş buz mavisi, buhar ve kırağı çıkaran",
+        text: "Erimiş kriyojenik buz mavisi, hafif buhar ve kırağı çıkaran",
+        note: "Kış konsepti, Porsche ve Audi RS6'da olağanüstü duruyor."
+      },
+      {
+        label: "8. Kırmızı şarap rengi reçine, yavaş akan",
+        text: "Koyu yakut/şarap rengi lüks reçine, viskoz yavaş akış",
+        note: "Bordo ve siyah gövdeli GT araçlarında ultra-premium durur."
+      },
+      {
+        label: "9. Erimiş elmas sıvısı - şeffaf ve ışıltılı",
+        text: "Erimiş sıvı elmas, şeffaf prizmatik ışıltılı",
+        note: "En asil ve saf zenginlik hissi veren konsept."
+      },
+      {
+        label: "10. Sıvı azot - beyaz duman ve buz kristalleri saçan",
+        text: "Sıvı azot, yoğun beyaz duman ve dondurucu mikro buz kristalleri",
+        note: "Egzoz dumanı ve kıvılcım sahnesiyle birleştiğinde anında viral."
+      }
+    ]
   },
   {
-    id: "prompt-car-3",
+    id: "prompt-interior-mechanism-video",
     channel: "araba",
     channelName: "Otomobil & Hypercar (Reels / TikTok)",
-    title: "Gün Batımı Otoyolunda Nissan Skyline GT-R R34 (Chameleon Wrap)",
-    prompt: "Low-angle rear three-quarter shot of an iconic Nissan Skyline GT-R R34 V-Spec II with a chameleon iridescent wrap shifting between deep emerald green and bronze. Huge titanium burnt exhaust tip idling with faint heat distortion wave. Driving along the California Pacific Coast Highway during golden hour. Warm orange sunlight bouncing off the flared fenders, Nismo LMGT4 black bronze wheels. 35mm film grain, Kodachrome color tone, nostalgic JDM aesthetics --ar 16:9 --v 6.1",
-    targetModel: "Midjourney v6.1",
-    aspectRatio: "16:9",
-    parameters: "--ar 16:9 --v 6.1 --stylize 250",
-    tags: ["JDM", "Skyline R34", "Chameleon Wrap", "Golden Hour", "PCH"],
-    engagementTip: "YouTube Shorts ve Instagram Carousel için 'JDM Legends never die' serisinin ilk karesi olarak ideal."
+    title: "İç Detay // Transparan Panelli İskelet Mekanizma Promptu",
+    tabTitle: "iç detay",
+    prompt: `[ARAÇ] = 
+[MATERYAL] = 
+[İÇ DETAY] = 
+
+Tamamı [MATERYAL] ile kaplanmış ve yer yer transparan paneller altından [İÇ DETAY] görünen bir [ARAÇ] içeren, hiper gerçekçi sinematik lüks otomobil tanıtım videosu oluştur.
+[MATERYAL] aracın tüm dış gövdesini eksiksiz kaplamalı, her kıvrımı ve panel aralığını takip etmeli. Yüzey gerçekçi doku derinliği, vernikli premium işçilik ve fiziksel doğru yansımalara sahip olmalı. Transparan bölümlerdeki [İÇ DETAY] ultra detaylı, 3 boyutlu ve ışıkla etkileşimli olmalı.
+Görsel Detaylar: Cilalı krom/altın detaylar, premium özel jantlar, kristal camlar.
+Mekân: Ultra temiz karanlık lüks showroom, siyah zemin, hafif sis, tavan ışık ızgaraları.
+Sahne Sıralaması:
+1. HOOK: [İÇ DETAY] mekanizmasının [MATERYAL] altında çalışma anının makro çekimi. Hızlı zoom-in.
+2. Malzeme Makro: [MATERYAL] yüzeyi üzerinde akıcı makro ilerleyiş, damar ve mikro detaylar.
+3. Üstten: Yüksek açıdan öne doğru, kaput ve tavan, tavan ışıklarının yansıması.
+4. Önden Kahraman: Alçak açılı, farlar ve gündüz farları yanık, [MATERYAL] üzerinde keskin yansımalar.
+5. Yan Profil Orbital: Yan çizgiler, jantlar, transparan bölümde [İÇ DETAY] görünsün.
+6. İç Mekân: [MATERYAL] ile uyumlu trimli direksiyon ve konsol.
+7. Arkadan Final: Stop lambaları yanık, difüzör, egzozdan kısa alev, kamera geri çekilsin.
+Final: 3 çeyrek açıda sabitle.
+KURAL: [ARAÇ] oranları, [MATERYAL] damar yönü, [İÇ DETAY] konumu hiç değişmemeli. Tam tutarlılık. 8K, ray tracing, 35mm anamorfik, 24 FPS, 9:16, 8 saniye.`,
+    negativePrompt: "deformed car proportions, changing mechanism position, inconsistent texture veins, low quality, 2d cartoon, blurry glass, distorted reflections",
+    targetModel: "Omni 1.1",
+    aspectRatio: "9:16",
+    parameters: "8K, ray tracing, 35mm anamorfik, 24 FPS, 9:16, 8 saniye, mechanical skeleton precision",
+    tags: ["İç Mekanizma", "Transparan Panel", "İskelet Saat", "Tourbillon", "Lüks Showroom", "8K Video"],
+    presetsTitle: "İç Detay & Mekanizma Seçenekleri",
+    engagementTip: "Transparan paneller altındaki mekanik hareketler (özellikle tourbillon veya V12 krank mili) izleyicinin videoyu tekrar tekrar izlemesini (loop rate) tetikler. Yorumlarda 'Mekanik saat mi, saf motor gücü mü?' sorusu yüksek etkileşim sağlar.",
+    presets: [
+      {
+        label: "1. Altın mekanik dişli ve piston sistemi",
+        text: "Altın mekanik dişli ve piston sistemi",
+        note: "En çok tutan, özellikle Lamborghini ve hiper araçlarda olağanüstü duruyor."
+      },
+      {
+        label: "2. İskelet saat mekanizması - tourbillon",
+        text: "İskelet saat mekanizması - tourbillon",
+        note: "Lüks saat severler bayılıyor, kaydetme (save rate) tavan yapıyor."
+      },
+      {
+        label: "3. Titanyum V12 motor bloğu, görünür krank",
+        text: "Titanyum V12 motor bloğu, görünür krank",
+        note: "Kaputun altından motoru transparan gösteren yarış mühendisliği havası."
+      },
+      {
+        label: "4. Siyah karbon fiber iskelet kafes",
+        text: "Siyah karbon fiber iskelet kafes",
+        note: "Safkan pist ve yarış otomobili hissi."
+      },
+      {
+        label: "5. Beyaz fiber optik damar ağı, nabız gibi yanıp sönen",
+        text: "Beyaz fiber optik damar ağı, nabız gibi yanıp sönen",
+        note: "Cyberpunk ve yüksek teknoloji meraklıları için birebir."
+      },
+      {
+        label: "6. Mini şehir maketi - gökdelenler ve ışıklar",
+        text: "Mini şehir maketi - gökdelenler ve ışıklar",
+        note: "Rolls-Royce ve Maybach tavan/kaputunda büyüleyici estetik duruyor."
+      },
+      {
+        label: "7. Bal peteği titanyum yapı, altıgen hücreler",
+        text: "Bal peteği titanyum yapı, altıgen hücreler",
+        note: "Hafiflik ve premium havacılık-uzay endüstrisi havası."
+      },
+      {
+        label: "8. Devre kartı ve mavi LED çip yolları",
+        text: "Devre kartı ve mavi LED çip yolları",
+        note: "Fütüristik teknoloji ve yapay zeka temalı görsel kurgular için."
+      },
+      {
+        label: "9. İskelet içinde sıkıştırılmış elmas tozu ve kristaller",
+        text: "İskelet içinde sıkıştırılmış elmas tozu ve kristaller",
+        note: "Işık vurduğunda prizmatik parıltı ve kristal derinlik saçıyor."
+      },
+      {
+        label: "10. Siyah mermer içinde altın damar, içten aydınlatmalı",
+        text: "Siyah mermer içinde altın damar, içten aydınlatmalı",
+        note: "En asil ve lüks duran kombinasyonlardan biri."
+      }
+    ]
   },
   {
-    id: "prompt-car-4",
+    id: "prompt-dynamic-particle-material-video",
     channel: "araba",
     channelName: "Otomobil & Hypercar (Reels / TikTok)",
-    title: "Fütüristik Stüdyoda Lamborghini Revuelto (Matte Stealth Black)",
-    prompt: "Ultra-minimalist dark infinity studio showcase of Lamborghini Revuelto in matte stealth radar-absorbent black with neon orange brake calipers and Y-shaped DRL glow. Dramatic rim lighting slicing along the hexagonal carbon body lines. Subtle dry ice fog creeping across the glossy mirror floor reflecting the rear active wing. High-end automotive commercial still, Hasselblad H6D-100c, f/8, crisp macro reflections --ar 9:16 --v 6.1",
-    targetModel: "Midjourney v6.1",
+    title: "Dinamik // Binlerce Parçacıklı 3D Doku Kaplama Promptu",
+    tabTitle: "dinamik",
+    prompt: `[ARAÇ] = 
+[MATERYAL] = 
+
+Tamamı binlerce adet [MATERYAL] ile kaplanmış bir [ARAÇ] içeren hiper gerçekçi sinematik video oluştur.
+Her bir [MATERYAL] parçası ayrı ayrı 3D hacimli, keskin speküler yansımalar veren ve gövdeyi kesintisiz kaplayan yapıda olmalı. Panel aralıkları bile [MATERYAL] ile dolu görünmeli.
+Görsel Detaylar: Krom veya altın kontrast detaylar.
+Mekân: Karanlık lüks showroom, siyah zemin, hafif sis.
+Sahne Sıralaması:
+1. HOOK: Bir avuç [MATERYAL] parçasının gövdeye düşüp yapışmasının slow-motion makro çekimi.
+2. Malzeme Makro: [MATERYAL] dokusu üzerinde ışık gezsin, her parçada ayrı yansıma.
+3. Üstten: Binlerce [MATERYAL] üzerinde tavan ışıklarının kırılması.
+4. Önden Kahraman: Farlar yanık, [MATERYAL] yüzeyde far yansıması.
+5. Yan Profil Orbital: Kapı kolları [MATERYAL] arasından çıksın.
+6. İç Mekân: Koltuklarda [MATERYAL] ile uyumlu dikiş detayı.
+7. Arkadan Final: Stop lambaları yanık, [MATERYAL] ile kaplı difüzör.
+KURAL: [MATERYAL] boyutu, dizilimi ve parlaklığı hiç değişmemeli. 8K, ray tracing, 9:16, 8 saniye.`,
+    negativePrompt: "flat textures, low polygon, 2d decals, blurred particles, inconsistent particle count, flickering geometry, low resolution",
+    targetModel: "Omni 1.1",
     aspectRatio: "9:16",
-    parameters: "--ar 9:16 --v 6.1 --no cartoon, 3d render",
-    tags: ["Lamborghini", "Stealth Black", "Dark Studio", "V12", "Minimalist"],
-    engagementTip: "'Dark Mode On 🦇' başlığıyla Reels kapağı olarak kullanıldığında tıklanma oranı %40 artıyor."
-  },
-  {
-    id: "prompt-cyber-1",
-    channel: "cyberpunk",
-    channelName: "Cyberpunk & Fütüristik Teknoloji",
-    title: "Neo-Tokyo Uçan Siber Taksi ve Yağmurlu Gökyüzü Otoyolu",
-    prompt: "Futuristic vertical perspective of a retro-futuristic Cyberpunk flying hover-car navigating between towering holographic skyscrapers in Neo-Seoul 2099. Heavy perpetual acid rain with neon green and magenta billboard glare reflecting in windshield puddles. The pilot visible inside with cybernetic optic implants and illuminated dashboard telemetry. Syd Mead inspired retro-futurism, cinematic lighting, photorealistic, 8k --ar 9:16 --v 6.1",
-    targetModel: "Flux.1 Dev",
-    aspectRatio: "9:16",
-    parameters: "--ar 9:16 --v 6.1",
-    tags: ["Cyberpunk", "Hovercar", "Neo Tokyo", "Sci-Fi", "Hologram"],
-    engagementTip: "'2099 yılında taksi beklerken...' kurgusuyla müzikli video oluşturun."
-  },
-  {
-    id: "prompt-cyber-2",
-    channel: "cyberpunk",
-    channelName: "Cyberpunk & Fütüristik Teknoloji",
-    title: "Siber-Mekanik Kol ile Sokak Lezzeti Hazırlayan Şef",
-    prompt: "Hyper-detailed close-up street vendor in a neon alleyway of Hong Kong cyberpunk future. The chef possesses a polished chrome and matte carbon-fiber prosthetic cybernetic arm with delicate micro-actuators, masterfully stir-frying noodles in a flaming wok. Steam rising into the neon vapor lights, intense amber and cyan color contrast, cinematic depth of field, 85mm portrait, photorealistic skin pores and grease details --ar 9:16 --v 6.1",
-    targetModel: "Midjourney v6.1",
-    aspectRatio: "9:16",
-    parameters: "--ar 9:16 --v 6.1 --style raw",
-    tags: ["Cyborg", "Street Food", "Neon", "Cyberpunk", "Cinematic"],
-    engagementTip: "Storytelling formatında yapay zeka reel serisi için yüksek kaydetme oranı getirir."
-  },
-  {
-    id: "prompt-lux-1",
-    channel: "luxury",
-    channelName: "Lüks Yaşam & Mimari Estetik",
-    title: "Dubai Skyline Manzaralı Sonsuzluk Havuzlu Penthouse",
-    prompt: "Cinematic golden hour architectural photograph of a high-ceiling ultra-luxury modern minimalist penthouse terrace in Dubai. Travertine marble floors leading to a glass-edge cantilever infinity pool reflecting the Burj Khalifa skyline at dusk. Warm recessed architectural LED strip lights, bespoke walnut furniture, olive bonsai tree in concrete planter. Architectural Digest magazine style, Hasselblad 24mm, natural diffused light, ultra-luxurious, calming aesthetic --ar 9:16 --v 6.1",
-    targetModel: "Flux.1 Dev",
-    aspectRatio: "9:16",
-    parameters: "--ar 9:16 --style raw",
-    tags: ["Luxury", "Penthouse", "Dubai", "Architecture", "Infinity Pool"],
-    engagementTip: "'Böyle bir yerde uyanmak ister miydin?' sorusuyla yüksek yorum etkileşimi sağlar."
-  },
-  {
-    id: "prompt-portrait-1",
-    channel: "portrait",
-    channelName: "Moda & Ultra-Gerçekçi Portre",
-    title: "Yağmurlu Günde Pencere Kenarı Doğal Işık Portresi",
-    prompt: "Raw natural light portrait of a stylish woman wearing a brushed oversized charcoal wool coat, standing by a café window covered in rain droplets. Soft diffused overcast natural daylight illuminating realistic skin texture, individual eyelash strands, subtle freckles, no airbrushing. 85mm f/1.4 lens, creamy bokeh, muted Scandinavian film tones, Kodak Portra 400 aesthetic, candid documentary fashion editorial --ar 4:5 --v 6.1 --style raw",
-    targetModel: "Midjourney v6.1",
-    aspectRatio: "4:5",
-    parameters: "--ar 4:5 --v 6.1 --style raw",
-    tags: ["Portrait", "Natural Light", "Film Grain", "Kodak Portra", "Editorial"],
-    engagementTip: "Instagram ana akış postları için 4:5 oranı ekranda en çok yer kaplayan ve en yüksek CTR alan formattır."
+    parameters: "8K, ray tracing, 9:16, 8 saniye, macro slow-motion physics, 3D volumetric particles",
+    tags: ["Dinamik Materyal", "3D Hacimli", "Parçacık Kaplama", "Slow Motion", "Viral Reels", "8K Video"],
+    engagementTip: "HOOK sahnesindeki parçacıkların gövdeye düşüp yapışma anı (slow-motion) izleyiciyi hipnotize eder. Kaplamalar sekmesinden seçeceğiniz kristaller, altın pullar, elmaslar veya karbon mozaikler ile birleştirildiğinde izlenme süresi zirve yapar."
   }
 ];

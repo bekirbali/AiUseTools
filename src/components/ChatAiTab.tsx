@@ -8,6 +8,8 @@ import {
   SocialPromptItem,
   ChatMessage,
 } from "@/types";
+import { initialCarGroups } from "@/data/carGroups";
+import { initialWrapGroups } from "@/data/wrapGroups";
 import CopyButton from "./CopyButton";
 import {
   Bot,
@@ -161,8 +163,10 @@ export default function ChatAiTab({
     }
 
     // Fallback creative assistant answer
+    const totalCars = initialCarGroups.reduce((acc, g) => acc + g.cars.length, 0);
+    const totalWraps = initialWrapGroups.reduce((acc, g) => acc + g.wraps.length, 0);
     return {
-      text: `Bu konuda sana yardımcı olabilirim! Arşivimizde kayıtlı **${vehicles.length} araç modeli**, **${wraps.length} özel kaplama çeşidi**, **${skills.length} yapay zeka skilli** ve **${prompts.length} sosyal medya promptu** bulunuyor.\n\nDilersen:\n• Yeni bir araba veya kaplama kombinasyonu oluşturabiliriz,\n• Sosyal medya hesapların için hedef kitleye özel yeni prompt üretebiliriz,\n• Veya terminal kodlarını nasıl otomatize edeceğini konuşabiliriz.\n\nÖzel bir araç veya stil belirtmek ister misin?`,
+      text: `Bu konuda sana yardımcı olabilirim! Arşivimizde kayıtlı **${totalCars} araç modeli**, **${totalWraps} özel kaplama çeşidi**, **${skills.length} yapay zeka skilli** ve **${prompts.length} sosyal medya promptu** bulunuyor.\n\nDilersen:\n• Yeni bir araba veya kaplama kombinasyonu oluşturabiliriz,\n• Sosyal medya hesapların için hedef kitleye özel yeni prompt üretebiliriz,\n• Veya terminal kodlarını nasıl otomatize edeceğini konuşabiliriz.\n\nÖzel bir araç veya stil belirtmek ister misin?`,
     };
   };
 
@@ -320,15 +324,16 @@ export default function ChatAiTab({
         {/* Bottom Area: Quick Suggestions + Input */}
         <div className="pt-4 border-t border-white/10 space-y-3">
           {/* Quick chips */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
-            <span className="text-[10px] font-mono text-zinc-500 flex items-center gap-1 whitespace-nowrap">
-              <Lightbulb className="w-3 h-3 text-amber-400" /> Hızlı Sorular:
+          <div className="flex flex-wrap items-center gap-2 pt-1">
+            <span className="text-xs font-mono text-zinc-400 flex items-center gap-1.5 shrink-0">
+              <Lightbulb className="w-3.5 h-3.5 text-amber-400" /> Hızlı Sorular:
             </span>
             {quickQuestions.map((q) => (
               <button
                 key={q}
+                type="button"
                 onClick={() => handleSend(q)}
-                className="px-2.5 py-1 rounded text-[11px] font-mono glass-pill text-zinc-400 hover:text-cyan-300 hover:border-cyan-500/40 whitespace-nowrap transition-colors cursor-pointer"
+                className="px-3 py-1.5 rounded-lg text-xs font-mono glass-pill text-zinc-300 hover:text-cyan-300 hover:border-cyan-500/40 transition-colors cursor-pointer text-left"
               >
                 {q}
               </button>

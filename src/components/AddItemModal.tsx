@@ -44,7 +44,7 @@ export default function AddItemModal({
   const [promptTitle, setPromptTitle] = useState("");
   const [promptChannel, setPromptChannel] = useState<any>("araba");
   const [promptText, setPromptText] = useState("");
-  const [promptModel, setPromptModel] = useState<any>("Midjourney v6.1");
+  const [promptModel, setPromptModel] = useState<any>("Omni 1.1");
   const [promptRatio, setPromptRatio] = useState<any>("9:16");
   const [promptTip, setPromptTip] = useState("");
   const [promptTags, setPromptTags] = useState("");
@@ -351,10 +351,7 @@ export default function AddItemModal({
                     onChange={(e) => setPromptModel(e.target.value)}
                     className="w-full px-3.5 py-2 rounded-lg glass-input text-xs text-white"
                   >
-                    <option value="Midjourney v6.1">Midjourney v6.1</option>
-                    <option value="Flux.1 Dev">Flux.1 Dev</option>
-                    <option value="Flux.1 Schnell">Flux.1 Schnell</option>
-                    <option value="SDXL">SDXL</option>
+                    <option value="Omni 1.1">Omni 1.1</option>
                   </select>
                 </div>
 
@@ -461,11 +458,13 @@ export default function AddItemModal({
                     onChange={(e) => setCarCategory(e.target.value)}
                     className="w-full px-3.5 py-2 rounded-lg glass-input text-xs text-white"
                   >
-                    <option value="Supercar">Supercar</option>
-                    <option value="Hypercar">Hypercar</option>
-                    <option value="JDM Legend">JDM Legend</option>
-                    <option value="Super SUV">Super SUV</option>
-                    <option value="Cyberpunk Concept">Cyberpunk Concept</option>
+                    <option value="Süper Spor & Pist Odaklı">Süper Spor & Pist Odaklı</option>
+                    <option value="Lüks & Performans SUV">Lüks & Performans SUV</option>
+                    <option value="Ultra Lüks GT & Prestij Sedan">Ultra Lüks GT & Prestij Sedan</option>
+                    <option value="Agresif Sokak & Pist Sedan / Coupe">Agresif Sokak & Pist Sedan / Coupe</option>
+                    <option value="Yeni Nesil Hiper & Süper Otomobiller">Yeni Nesil Hiper & Süper Otomobiller</option>
+                    <option value="Vahşi & Uzay Gemisi Tasarımlar">Vahşi & Uzay Gemisi Tasarımlar</option>
+                    <option value="Widebody Canavarlar">Widebody Canavarlar</option>
                   </select>
                 </div>
                 <div>

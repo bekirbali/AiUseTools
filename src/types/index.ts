@@ -32,19 +32,32 @@ export interface SocialPromptItem {
   title: string;
   prompt: string;
   negativePrompt?: string;
-  targetModel: "Midjourney v6.1" | "Flux.1 Dev" | "Flux.1 Schnell" | "SDXL" | "Claude / ChatGPT";
+  targetModel: "Omni 1.1" | "Midjourney v6.1" | "Flux.1 Dev" | "Flux.1 Schnell" | "SDXL" | "Claude / ChatGPT" | string;
   aspectRatio: "9:16" | "16:9" | "1:1" | "4:5";
   parameters?: string;
   tags: string[];
   engagementTip?: string;
+  presets?: { label: string; text: string; note?: string }[];
+  presetsTitle?: string;
+  tabTitle?: string;
   isCustom?: boolean;
 }
+
+export type VehicleCategory =
+  | "Süper Spor & Pist Odaklı"
+  | "Lüks & Performans SUV"
+  | "Ultra Lüks GT & Prestij Sedan"
+  | "Agresif Sokak & Pist Sedan / Coupe"
+  | "Yeni Nesil Hiper & Süper Otomobiller"
+  | "Vahşi & Uzay Gemisi Tasarımlar"
+  | "Widebody Canavarlar"
+  | string;
 
 export interface VehicleModelItem {
   id: string;
   brand: string;
   model: string;
-  category: "Hypercar" | "Supercar" | "JDM Legend" | "Luxury GT" | "Super SUV" | "Cyberpunk Concept";
+  category: VehicleCategory;
   yearOrGen: string;
   promptSnippet: string;
   bodyStyle: string;

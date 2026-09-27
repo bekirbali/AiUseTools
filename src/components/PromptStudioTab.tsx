@@ -57,7 +57,7 @@ export default function PromptStudioTab({
 
   // Modifiers
   const [aspectRatio, setAspectRatio] = useState<"9:16" | "16:9" | "1:1">("9:16");
-  const [targetEngine, setTargetEngine] = useState<"Midjourney v6.1" | "Flux.1 Dev">("Midjourney v6.1");
+  const [targetEngine, setTargetEngine] = useState<"Omni 1.1">("Omni 1.1");
   const [includeRainDroplets, setIncludeRainDroplets] = useState(true);
   const [includeMotionBlur, setIncludeMotionBlur] = useState(false);
   const [includeFilmGrain, setIncludeFilmGrain] = useState(true);
@@ -113,11 +113,7 @@ export default function PromptStudioTab({
     }
 
     // Engine specific tails
-    if (targetEngine === "Midjourney v6.1") {
-      parts.push(`--ar ${aspectRatio} --v 6.1 --style raw --q 2`);
-    } else {
-      parts.push(`ultra-detailed, 8k resolution, raytracing reflections, photorealistic render [Format: ${aspectRatio}]`);
-    }
+    parts.push(`ultra-detailed, 8K resolution, raytracing reflections, cinematic photorealistic render [Engine: Omni 1.1, Format: ${aspectRatio}]`);
 
     return parts.join(". ");
   };
@@ -133,7 +129,7 @@ export default function PromptStudioTab({
       prompt: generatedPrompt,
       targetModel: targetEngine,
       aspectRatio: aspectRatio,
-      parameters: targetEngine === "Midjourney v6.1" ? `--ar ${aspectRatio} --v 6.1 --style raw` : `--ar ${aspectRatio}`,
+      parameters: `8K, ray tracing, 35mm anamorfik, 24 FPS, ${aspectRatio}, 8 saniye, Omni 1.1`,
       tags: [selectedCar.brand, selectedWrap.name, selectedEnv.name.split(" ")[0]],
       engagementTip: "Stüdyoda özel üretilen kombinasyon.",
       isCustom: true,
@@ -175,11 +171,11 @@ export default function PromptStudioTab({
           <div className="space-y-2.5">
             <label className="text-xs font-mono font-semibold text-zinc-300 flex items-center justify-between">
               <span className="flex items-center gap-1.5 text-amber-300">
-                <Car className="w-3.5 h-3.5" /> [1] ARAÇ MODELİ SEÇİMİ:
+                <Car className="w-3.5 h-3.5" /> [1] ARAÇ MODELİ SEÇİMİ ({vehicles.length}):
               </span>
               <span className="text-[11px] text-zinc-500">{selectedCar?.brand} {selectedCar?.model}</span>
             </label>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 max-h-64 overflow-y-auto pr-1.5 scrollbar-thin">
               {vehicles.map((car) => {
                 const isSelected = car.id === currentCarId;
                 return (
@@ -306,20 +302,15 @@ export default function PromptStudioTab({
             {/* Target AI Engine */}
             <div className="space-y-1.5">
               <span className="text-[11px] font-mono text-zinc-400">Hedef Model:</span>
-              <div className="grid grid-cols-2 gap-2">
-                {(["Midjourney v6.1", "Flux.1 Dev"] as const).map((eng) => (
-                  <button
-                    key={eng}
-                    onClick={() => setTargetEngine(eng)}
-                    className={`py-1.5 px-3 rounded text-xs font-mono font-medium border cursor-pointer ${
-                      targetEngine === eng
-                        ? "bg-cyan-500/20 border-cyan-500/50 text-cyan-200 shadow-[0_0_15px_rgba(6,182,212,0.2)]"
-                        : "glass-pill text-zinc-400 hover:text-white"
-                    }`}
-                  >
-                    {eng}
-                  </button>
-                ))}
+              <div className="grid grid-cols-1 gap-2">
+                <button
+                  type="button"
+                  onClick={() => setTargetEngine("Omni 1.1")}
+                  className="py-1.5 px-3 rounded text-xs font-mono font-medium border bg-cyan-500/20 border-cyan-500/50 text-cyan-200 shadow-[0_0_15px_rgba(6,182,212,0.2)] flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Omni 1.1</span>
+                </button>
               </div>
             </div>
 
