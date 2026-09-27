@@ -21,6 +21,7 @@ import {
   BookmarkPlus,
   Layers,
   Wand2,
+  FileText,
 } from "lucide-react";
 
 interface PromptStudioTabProps {
@@ -32,6 +33,7 @@ interface PromptStudioTabProps {
   selectedWrapId?: string;
   onTriggerToast: (msg: string) => void;
   onSavePromptToVault: (newPrompt: SocialPromptItem) => void;
+  onNavigateToCaptions?: (vehicle: string, material: string) => void;
 }
 
 export default function PromptStudioTab({
@@ -43,6 +45,7 @@ export default function PromptStudioTab({
   selectedWrapId,
   onTriggerToast,
   onSavePromptToVault,
+  onNavigateToCaptions,
 }: PromptStudioTabProps) {
   const [currentCarId, setCurrentCarId] = useState(
     selectedVehicleId || vehicles[0]?.id || ""
@@ -418,6 +421,22 @@ export default function PromptStudioTab({
                 <BookmarkPlus className="w-3.5 h-3.5" />
                 <span>ARŞİVE KAYDET</span>
               </button>
+
+              {onNavigateToCaptions && (
+                <button
+                  type="button"
+                  onClick={() =>
+                    onNavigateToCaptions(
+                      `${selectedCar.brand} ${selectedCar.model}`,
+                      selectedWrap.name
+                    )
+                  }
+                  className="col-span-2 py-2 px-3 rounded-lg font-mono text-xs font-bold bg-pink-500/15 hover:bg-pink-500/25 border border-pink-500/30 text-pink-200 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(236,72,153,0.15)]"
+                >
+                  <FileText className="w-3.5 h-3.5 text-pink-400" />
+                  <span>BU ARAÇ İÇİN AÇIKLAMA ŞABLONLARINI AL (INSTA, TIKTOK, YT) ➔</span>
+                </button>
+              )}
             </div>
           </div>
         </div>

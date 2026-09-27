@@ -1,0 +1,19 @@
+Başlık şablonu (60 karakteri geçme):
+
+Code
+Bu [ARAÇ] tamamen [MATERYAL] - Gerçek mi? 🤯
+
+Diğer hazır varyasyonlar:
+
+Bu [ARAÇ] [MATERYAL] kaplansa kaça patlar?
+[ARAÇ] x [MATERYAL] - Olmuş mu? 👇
+Açıklama şablonu:
+
+Code
+Bu [ARAÇ] tamamen [MATERYAL] ile kaplandı. Gerçek olsaydı trafiğe çıkar mıydı?
+
+Bu video Google Flow - Omni 1.1 ile AI konsept olarak üretildi.
+
+Sıradaki araba ne olsun? Yoruma yaz, en çok isteneni yapacağım.
+
+#[ARAÇ MARKASI] #carwrap #aiart #concept

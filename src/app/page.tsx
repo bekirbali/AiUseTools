@@ -17,6 +17,16 @@ import { initialWraps } from "@/data/initialWraps";
 import { initialCarGroups } from "@/data/carGroups";
 import { initialWrapGroups } from "@/data/wrapGroups";
 import { environmentPresets, cameraAnglePresets } from "@/data/presets";
+import {
+  getSkills,
+  addSkill,
+  getPrompts,
+  addPrompt,
+  getVehicles,
+  addVehicle,
+  getWraps,
+  addWrap,
+} from "@/lib/supabaseService";
 
 import {
   SkillItem,
@@ -56,6 +66,11 @@ export default function Home() {
   const [studioCarId, setStudioCarId] = useState<string>("");
   const [studioWrapId, setStudioWrapId] = useState<string>("");
 
+  // Prompts sub-mode & caption pre-fill states
+  const [promptsMode, setPromptsMode] = useState<"prompts" | "captions">("prompts");
+  const [promptsVehicle, setPromptsVehicle] = useState<string>("");
+  const [promptsMaterial, setPromptsMaterial] = useState<string>("");
+
   // Toast State
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
@@ -68,69 +83,29 @@ export default function Home() {
   // Hydration state guard
   const [isMounted, setIsMounted] = useState(false);
 
-  // Load from localStorage on mount
+  // Load from Supabase on mount (with fallback to localStorage/initial)
   useEffect(() => {
     setIsMounted(true);
-    try {
-      const savedSkills = localStorage.getItem("ai_studio_skills");
-      if (savedSkills) {
-        const parsed = JSON.parse(savedSkills) as SkillItem[];
-        const updatedInitials = initialSkills.map((init) => {
-          const match = parsed.find((s) => s.id === init.id);
-          return match
-            ? {
-                ...match,
-                installCommand: init.installCommand,
-                name: init.name,
-                description: init.description,
-              }
-            : init;
-        });
-        const customSkills = parsed.filter(
-          (s) => s.isCustom && !updatedInitials.some((u) => u.id === s.id)
-        );
-        setSkills([...updatedInitials, ...customSkills]);
-      } else {
-        setSkills(initialSkills);
-      }
 
-      const savedPrompts = localStorage.getItem("ai_studio_prompts_v8");
-      if (savedPrompts) {
-        const parsed = JSON.parse(savedPrompts) as SocialPromptItem[];
-        const customPrompts = parsed.filter(
-          (p) => p.isCustom && !initialPrompts.some((init) => init.id === p.id)
-        );
-        setPrompts([...initialPrompts, ...customPrompts]);
-      } else {
-        setPrompts(initialPrompts);
-        try {
-          localStorage.setItem("ai_studio_prompts_v8", JSON.stringify(initialPrompts));
-        } catch (err) {
-          console.error(err);
-        }
-      }
+    async function loadDataFromDatabase() {
+      try {
+        const [dbSkills, dbPrompts, dbVehicles, dbWraps] = await Promise.all([
+          getSkills(),
+          getPrompts(),
+          getVehicles(),
+          getWraps(),
+        ]);
 
-      const savedVehicles = localStorage.getItem("ai_studio_vehicles_v2");
-      if (savedVehicles) {
-        const parsed = JSON.parse(savedVehicles) as VehicleModelItem[];
-        const customVehicles = parsed.filter(
-          (v) => v.isCustom && !initialVehicles.some((init) => init.id === v.id)
-        );
-        setVehicles([...initialVehicles, ...customVehicles]);
-      } else {
-        setVehicles(initialVehicles);
-        try {
-          localStorage.setItem("ai_studio_vehicles_v2", JSON.stringify(initialVehicles));
-        } catch (err) {
-          console.error(err);
-        }
+        if (dbSkills && dbSkills.length > 0) setSkills(dbSkills);
+        if (dbPrompts && dbPrompts.length > 0) setPrompts(dbPrompts);
+        if (dbVehicles && dbVehicles.length > 0) setVehicles(dbVehicles);
+        if (dbWraps && dbWraps.length > 0) setWraps(dbWraps);
+      } catch (e) {
+        console.error("Failed to load data from Supabase, using defaults", e);
       }
-
-      const savedWraps = localStorage.getItem("ai_studio_wraps");
-      if (savedWraps) setWraps(JSON.parse(savedWraps));
-    } catch (e) {
-      console.error("Failed to load local storage data", e);
     }
+
+    loadDataFromDatabase();
   }, []);
 
   // Save to localStorage when state changes
@@ -174,29 +149,45 @@ export default function Home() {
     setToastMessage(msg);
   };
 
-  // Add Item Handlers
-  const handleAddSkill = (newSkill: SkillItem) => {
-    const updated = [newSkill, ...skills];
-    saveSkills(updated);
-    triggerToast(`Yeni skill "${newSkill.name}" başarıyla eklendi!`);
+  // Add Item Handlers (Save to Supabase & State)
+  const handleAddSkill = async (newSkill: SkillItem) => {
+    setSkills((prev) => [newSkill, ...prev]);
+    saveSkills([newSkill, ...skills]);
+    triggerToast(`Yeni skill "${newSkill.name}" kaydediliyor...`);
+    const success = await addSkill(newSkill);
+    if (success) {
+      triggerToast(`"${newSkill.name}" başarıyla Supabase'e kaydedildi! ⚡`);
+    }
   };
 
-  const handleAddPrompt = (newPrompt: SocialPromptItem) => {
-    const updated = [newPrompt, ...prompts];
-    savePrompts(updated);
-    triggerToast(`Yeni prompt "${newPrompt.title}" arşive eklendi!`);
+  const handleAddPrompt = async (newPrompt: SocialPromptItem) => {
+    setPrompts((prev) => [newPrompt, ...prev]);
+    savePrompts([newPrompt, ...prompts]);
+    triggerToast(`Yeni prompt "${newPrompt.title}" kaydediliyor...`);
+    const success = await addPrompt(newPrompt);
+    if (success) {
+      triggerToast(`"${newPrompt.title}" başarıyla Supabase'e kaydedildi! ⚡`);
+    }
   };
 
-  const handleAddCar = (newCar: VehicleModelItem) => {
-    const updated = [newCar, ...vehicles];
-    saveVehicles(updated);
-    triggerToast(`Yeni araç modeli "${newCar.brand} ${newCar.model}" eklendi!`);
+  const handleAddCar = async (newCar: VehicleModelItem) => {
+    setVehicles((prev) => [newCar, ...prev]);
+    saveVehicles([newCar, ...vehicles]);
+    triggerToast(`Yeni araç modeli "${newCar.brand} ${newCar.model}" kaydediliyor...`);
+    const success = await addVehicle(newCar);
+    if (success) {
+      triggerToast(`"${newCar.brand} ${newCar.model}" başarıyla Supabase'e kaydedildi! ⚡`);
+    }
   };
 
-  const handleAddWrap = (newWrap: WrapStyleItem) => {
-    const updated = [newWrap, ...wraps];
-    saveWraps(updated);
-    triggerToast(`Yeni kaplama çeşidi "${newWrap.name}" eklendi!`);
+  const handleAddWrap = async (newWrap: WrapStyleItem) => {
+    setWraps((prev) => [newWrap, ...prev]);
+    saveWraps([newWrap, ...wraps]);
+    triggerToast(`Yeni kaplama çeşidi "${newWrap.name}" kaydediliyor...`);
+    const success = await addWrap(newWrap);
+    if (success) {
+      triggerToast(`"${newWrap.name}" başarıyla Supabase'e kaydedildi! ⚡`);
+    }
   };
 
   // Garage -> Studio Bridge
@@ -277,7 +268,7 @@ export default function Home() {
             </div>
 
             {/* Quick Stat Badges */}
-            <div className="grid grid-cols-3 gap-3 shrink-0">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 shrink-0">
               <button
                 type="button"
                 onClick={() => setActiveTab("skills")}
@@ -294,15 +285,35 @@ export default function Home() {
 
               <button
                 type="button"
-                onClick={() => setActiveTab("prompts")}
-                aria-label={`Sosyal Medya Promptları sekmesine git, toplam ${prompts.length} kayıtlı prompt`}
+                onClick={() => {
+                  setPromptsMode("prompts");
+                  setActiveTab("prompts");
+                }}
+                aria-label={`Sosyal Medya Video Promptları sekmesine git, toplam ${prompts.length} kayıtlı prompt`}
                 className="p-3 rounded-xl bg-black/30 border border-violet-500/20 text-center cursor-pointer hover:border-violet-500/50 focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:outline-none transition-colors"
               >
                 <div className="text-xl font-bold font-mono text-violet-400 tabular-nums">
                   {prompts.length}
                 </div>
                 <div className="text-[10px] font-mono text-zinc-400 uppercase">
-                  Sayfa Promptu
+                  Video Promptu
+                </div>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setPromptsMode("captions");
+                  setActiveTab("prompts");
+                }}
+                aria-label={`Açıklama Şablonları sekmesine git, Instagram, TikTok ve YouTube şablonları`}
+                className="p-3 rounded-xl bg-black/30 border border-pink-500/20 text-center cursor-pointer hover:border-pink-500/50 focus-visible:ring-2 focus-visible:ring-pink-400 focus-visible:outline-none transition-colors"
+              >
+                <div className="text-xl font-bold font-mono text-pink-400 tabular-nums">
+                  3
+                </div>
+                <div className="text-[10px] font-mono text-zinc-400 uppercase">
+                  Açıklama Şablonu
                 </div>
               </button>
 
@@ -345,6 +356,9 @@ export default function Home() {
                   setAddModalInitialType("prompt");
                   setIsAddModalOpen(true);
                 }}
+                initialMode={promptsMode}
+                initialVehicle={promptsVehicle}
+                initialMaterial={promptsMaterial}
               />
             )}
 
@@ -371,6 +385,13 @@ export default function Home() {
                 selectedWrapId={studioWrapId}
                 onTriggerToast={triggerToast}
                 onSavePromptToVault={handleAddPrompt}
+                onNavigateToCaptions={(v, m) => {
+                  setPromptsVehicle(v);
+                  setPromptsMaterial(m);
+                  setPromptsMode("captions");
+                  setActiveTab("prompts");
+                  triggerToast(`"${v}" için Açıklama Şablonları hazırlandı! 📱✨`);
+                }}
               />
             )}
 
