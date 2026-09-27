@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <linearGradient id="favTop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#818cf8" />
+    </linearGradient>
+    <linearGradient id="favLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#c084fc" />
+    </linearGradient>
+    <linearGradient id="favRight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+  </defs>
+
+  <!-- Dark Background Rounded Tile -->
+  <rect width="32" height="32" rx="7" fill="#090b10" stroke="#1e293b" stroke-width="1" />
+
+  <!-- Outer Network Ring Hexagon -->
+  <polygon points="16,3 27,9 27,23 16,29 5,23 5,9" stroke="#38bdf8" stroke-width="0.8" stroke-opacity="0.4" stroke-dasharray="1.5 1.5" fill="none" />
+  
+  <!-- Outer Joint Nodes -->
+  <circle cx="16" cy="3" r="1.2" fill="#22d3ee" />
+  <circle cx="27" cy="9" r="1.2" fill="#38bdf8" />
+  <circle cx="27" cy="23" r="1.2" fill="#818cf8" />
+  <circle cx="16" cy="29" r="1.2" fill="#c084fc" />
+  <circle cx="5" cy="23" r="1.2" fill="#a855f7" />
+  <circle cx="5" cy="9" r="1.2" fill="#06b6d4" />
+
+  <!-- Isometric Center Cube Faces -->
+  <polygon points="16,9 23,13 16,17 9,13" fill="url(#favTop)" fill-opacity="0.9" stroke="#38bdf8" stroke-width="0.8" />
+  <polygon points="9,13 16,17 16,25 9,21" fill="url(#favLeft)" fill-opacity="0.9" stroke="#818cf8" stroke-width="0.8" />
+  <polygon points="16,17 23,13 23,21 16,25" fill="url(#favRight)" fill-opacity="0.9" stroke="#06b6d4" stroke-width="0.8" />
+
+  <!-- Central Nexus Glowing Node -->
+  <circle cx="16" cy="17" r="1.8" fill="#ffffff" />
+</svg>

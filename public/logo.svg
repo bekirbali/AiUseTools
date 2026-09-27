@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <!-- Background Glow Gradient -->
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.35" />
+      <stop offset="60%" stop-color="#8b5cf6" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#090b10" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Linear Gradients for Isometric Cube Faces -->
+    <linearGradient id="topFaceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#818cf8" />
+    </linearGradient>
+
+    <linearGradient id="leftFaceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#c084fc" />
+    </linearGradient>
+
+    <linearGradient id="rightFaceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+
+    <linearGradient id="cyanLine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee" />
+      <stop offset="100%" stop-color="#818cf8" />
+    </linearGradient>
+  </defs>
+
+  <!-- Ambient Glow -->
+  <circle cx="50" cy="50" r="46" fill="url(#coreGlow)" />
+
+  <!-- Outer Interconnected Hexagon Network Lines -->
+  <polygon points="50,6 88,28 88,72 50,94 12,72 12,28" stroke="#38bdf8" stroke-width="1.2" stroke-opacity="0.45" stroke-dasharray="2 2" fill="none" />
+  
+  <!-- Outer Node Network Lines & Cross Links -->
+  <line x1="50" y1="6" x2="50" y2="28" stroke="#22d3ee" stroke-width="1.2" stroke-opacity="0.5" />
+  <line x1="88" y1="28" x2="68" y2="40" stroke="#38bdf8" stroke-width="1.2" stroke-opacity="0.5" />
+  <line x1="88" y1="72" x2="68" y2="60" stroke="#818cf8" stroke-width="1.2" stroke-opacity="0.5" />
+  <line x1="50" y1="94" x2="50" y2="72" stroke="#c084fc" stroke-width="1.2" stroke-opacity="0.5" />
+  <line x1="12" y1="72" x2="32" y2="60" stroke="#a855f7" stroke-width="1.2" stroke-opacity="0.5" />
+  <line x1="12" y1="28" x2="32" y2="40" stroke="#06b6d4" stroke-width="1.2" stroke-opacity="0.5" />
+
+  <!-- Outer Network Joint Circles (Nodes) -->
+  <circle cx="50" cy="6" r="2.5" fill="#22d3ee" />
+  <circle cx="88" cy="28" r="2.5" fill="#38bdf8" />
+  <circle cx="88" cy="72" r="2.5" fill="#818cf8" />
+  <circle cx="50" cy="94" r="2.5" fill="#c084fc" />
+  <circle cx="12" cy="72" r="2.5" fill="#a855f7" />
+  <circle cx="12" cy="28" r="2.5" fill="#06b6d4" />
+
+  <!-- Secondary Intermediate Hex Nodes -->
+  <circle cx="31" cy="17" r="1.8" fill="#38bdf8" fill-opacity="0.8" />
+  <circle cx="69" cy="17" r="1.8" fill="#818cf8" fill-opacity="0.8" />
+  <circle cx="31" cy="83" r="1.8" fill="#a855f7" fill-opacity="0.8" />
+  <circle cx="69" cy="83" r="1.8" fill="#c084fc" fill-opacity="0.8" />
+
+  <!-- ================= ISOMETRIC CENTRAL AI CORE CUBE ================= -->
+  <!-- Top Face -->
+  <polygon points="50,28 72,40 50,52 28,40" fill="url(#topFaceGrad)" fill-opacity="0.25" stroke="url(#topFaceGrad)" stroke-width="2.2" stroke-linejoin="round" />
+  <!-- Left Face -->
+  <polygon points="28,40 50,52 50,76 28,64" fill="url(#leftFaceGrad)" fill-opacity="0.25" stroke="url(#leftFaceGrad)" stroke-width="2.2" stroke-linejoin="round" />
+  <!-- Right Face -->
+  <polygon points="50,52 72,40 72,64 50,76" fill="url(#rightFaceGrad)" fill-opacity="0.25" stroke="url(#rightFaceGrad)" stroke-width="2.2" stroke-linejoin="round" />
+
+  <!-- Inner Cybernetic Circuit Lines on Cube -->
+  <!-- Top Face Circuit -->
+  <polygon points="50,34 62,40 50,46 38,40" fill="#22d3ee" fill-opacity="0.5" stroke="#38bdf8" stroke-width="1.2" />
+  <circle cx="50" cy="40" r="2.2" fill="#ffffff" />
+
+  <!-- Left Face Circuit Lines -->
+  <path d="M34,47 L44,52 L44,66" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round" fill="none" />
+  <circle cx="44" cy="66" r="1.8" fill="#ffffff" />
+  <rect x="33" y="52" width="5" height="5" transform="matrix(0.866 0.5 0 1 0 0)" fill="#818cf8" fill-opacity="0.7" />
+
+  <!-- Right Face Circuit Lines -->
+  <path d="M66,47 L56,52 L56,66" stroke="#06b6d4" stroke-width="1.5" stroke-linecap="round" fill="none" />
+  <circle cx="56" cy="66" r="1.8" fill="#ffffff" />
+  <rect x="52" y="36" width="5" height="5" transform="matrix(0.866 -0.5 0 1 0 0)" fill="#38bdf8" fill-opacity="0.7" />
+
+  <!-- Central Nexus Radiant Point -->
+  <circle cx="50" cy="52" r="3.2" fill="#ffffff" />
+  <circle cx="50" cy="52" r="6" fill="#38bdf8" fill-opacity="0.3" />
+</svg>
