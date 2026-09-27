@@ -14,6 +14,8 @@ import { initialSkills } from "@/data/initialSkills";
 import { initialPrompts } from "@/data/initialPrompts";
 import { initialVehicles } from "@/data/initialVehicles";
 import { initialWraps } from "@/data/initialWraps";
+import { initialCarGroups } from "@/data/carGroups";
+import { initialWrapGroups } from "@/data/wrapGroups";
 import { environmentPresets, cameraAnglePresets } from "@/data/presets";
 
 import {
@@ -46,6 +48,10 @@ export default function Home() {
   const [vehicles, setVehicles] = useState<VehicleModelItem[]>(initialVehicles);
   const [wraps, setWraps] = useState<WrapStyleItem[]>(initialWraps);
 
+  const totalGarageCars = initialCarGroups.reduce((acc, g) => acc + g.cars.length, 0);
+  const totalGarageWraps = initialWrapGroups.reduce((acc, g) => acc + g.wraps.length, 0);
+  const totalGarageCount = totalGarageCars + totalGarageWraps;
+
   // Studio pre-selection states
   const [studioCarId, setStudioCarId] = useState<string>("");
   const [studioWrapId, setStudioWrapId] = useState<string>("");
@@ -59,8 +65,12 @@ export default function Home() {
     "skill" | "prompt" | "car" | "wrap"
   >("skill");
 
+  // Hydration state guard
+  const [isMounted, setIsMounted] = useState(false);
+
   // Load from localStorage on mount
   useEffect(() => {
+    setIsMounted(true);
     try {
       const savedSkills = localStorage.getItem("ai_studio_skills");
       if (savedSkills) {
@@ -84,11 +94,37 @@ export default function Home() {
         setSkills(initialSkills);
       }
 
-      const savedPrompts = localStorage.getItem("ai_studio_prompts");
-      if (savedPrompts) setPrompts(JSON.parse(savedPrompts));
+      const savedPrompts = localStorage.getItem("ai_studio_prompts_v8");
+      if (savedPrompts) {
+        const parsed = JSON.parse(savedPrompts) as SocialPromptItem[];
+        const customPrompts = parsed.filter(
+          (p) => p.isCustom && !initialPrompts.some((init) => init.id === p.id)
+        );
+        setPrompts([...initialPrompts, ...customPrompts]);
+      } else {
+        setPrompts(initialPrompts);
+        try {
+          localStorage.setItem("ai_studio_prompts_v8", JSON.stringify(initialPrompts));
+        } catch (err) {
+          console.error(err);
+        }
+      }
 
-      const savedVehicles = localStorage.getItem("ai_studio_vehicles");
-      if (savedVehicles) setVehicles(JSON.parse(savedVehicles));
+      const savedVehicles = localStorage.getItem("ai_studio_vehicles_v2");
+      if (savedVehicles) {
+        const parsed = JSON.parse(savedVehicles) as VehicleModelItem[];
+        const customVehicles = parsed.filter(
+          (v) => v.isCustom && !initialVehicles.some((init) => init.id === v.id)
+        );
+        setVehicles([...initialVehicles, ...customVehicles]);
+      } else {
+        setVehicles(initialVehicles);
+        try {
+          localStorage.setItem("ai_studio_vehicles_v2", JSON.stringify(initialVehicles));
+        } catch (err) {
+          console.error(err);
+        }
+      }
 
       const savedWraps = localStorage.getItem("ai_studio_wraps");
       if (savedWraps) setWraps(JSON.parse(savedWraps));
@@ -110,7 +146,7 @@ export default function Home() {
   const savePrompts = (newPrompts: SocialPromptItem[]) => {
     setPrompts(newPrompts);
     try {
-      localStorage.setItem("ai_studio_prompts", JSON.stringify(newPrompts));
+      localStorage.setItem("ai_studio_prompts_v3", JSON.stringify(newPrompts));
     } catch (e) {
       console.error(e);
     }
@@ -119,7 +155,7 @@ export default function Home() {
   const saveVehicles = (newVehicles: VehicleModelItem[]) => {
     setVehicles(newVehicles);
     try {
-      localStorage.setItem("ai_studio_vehicles", JSON.stringify(newVehicles));
+      localStorage.setItem("ai_studio_vehicles_v2", JSON.stringify(newVehicles));
     } catch (e) {
       console.error(e);
     }
@@ -181,7 +217,15 @@ export default function Home() {
     if (confirm("Tüm verileri varsayılana sıfırlamak istediğinize emin misiniz?")) {
       localStorage.removeItem("ai_studio_skills");
       localStorage.removeItem("ai_studio_prompts");
+      localStorage.removeItem("ai_studio_prompts_v2");
+      localStorage.removeItem("ai_studio_prompts_v3");
+      localStorage.removeItem("ai_studio_prompts_v4");
+      localStorage.removeItem("ai_studio_prompts_v5");
+      localStorage.removeItem("ai_studio_prompts_v6");
+      localStorage.removeItem("ai_studio_prompts_v7");
+      localStorage.removeItem("ai_studio_prompts_v8");
       localStorage.removeItem("ai_studio_vehicles");
+      localStorage.removeItem("ai_studio_vehicles_v2");
       localStorage.removeItem("ai_studio_wraps");
       setSkills(initialSkills);
       setPrompts(initialPrompts);
@@ -211,7 +255,7 @@ export default function Home() {
         }}
         totalSkillsCount={skills.length}
         totalPromptsCount={prompts.length}
-        totalCarsCount={vehicles.length}
+        totalCarsCount={totalGarageCount}
       />
 
       {/* Main Content Area */}
@@ -265,11 +309,11 @@ export default function Home() {
               <button
                 type="button"
                 onClick={() => setActiveTab("garage")}
-                aria-label={`Araç & Kaplama Garajı sekmesine git, toplam ${vehicles.length + wraps.length} kayıt`}
+                aria-label={`Araç & Kaplama Garajı sekmesine git, toplam ${totalGarageCount} kayıt`}
                 className="p-3 rounded-xl bg-black/30 border border-amber-500/20 text-center cursor-pointer hover:border-amber-500/50 focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:outline-none transition-colors"
               >
                 <div className="text-xl font-bold font-mono text-amber-400 tabular-nums">
-                  {vehicles.length + wraps.length}
+                  {totalGarageCount}
                 </div>
                 <div className="text-[10px] font-mono text-zinc-400 uppercase">
                   Araç & Kaplama
@@ -280,67 +324,76 @@ export default function Home() {
         </div>
 
         {/* Tab Content Display */}
-        {activeTab === "skills" && (
-          <SkillsTab
-            skills={skills}
-            onTriggerToast={triggerToast}
-            onOpenAddModal={() => {
-              setAddModalInitialType("skill");
-              setIsAddModalOpen(true);
-            }}
-          />
-        )}
+        {isMounted ? (
+          <>
+            {activeTab === "skills" && (
+              <SkillsTab
+                skills={skills}
+                onTriggerToast={triggerToast}
+                onOpenAddModal={() => {
+                  setAddModalInitialType("skill");
+                  setIsAddModalOpen(true);
+                }}
+              />
+            )}
 
-        {activeTab === "prompts" && (
-          <PromptsTab
-            prompts={prompts}
-            onTriggerToast={triggerToast}
-            onOpenAddModal={() => {
-              setAddModalInitialType("prompt");
-              setIsAddModalOpen(true);
-            }}
-          />
-        )}
+            {activeTab === "prompts" && (
+              <PromptsTab
+                prompts={prompts}
+                onTriggerToast={triggerToast}
+                onOpenAddModal={() => {
+                  setAddModalInitialType("prompt");
+                  setIsAddModalOpen(true);
+                }}
+              />
+            )}
 
-        {activeTab === "garage" && (
-          <GarageTab
-            vehicles={vehicles}
-            wraps={wraps}
-            onTriggerToast={triggerToast}
-            onOpenAddModal={(type) => {
-              setAddModalInitialType(type || "car");
-              setIsAddModalOpen(true);
-            }}
-            onSelectForStudio={handleSelectForStudio}
-          />
-        )}
+            {activeTab === "garage" && (
+              <GarageTab
+                vehicles={vehicles}
+                wraps={wraps}
+                onTriggerToast={triggerToast}
+                onOpenAddModal={(type) => {
+                  setAddModalInitialType(type || "car");
+                  setIsAddModalOpen(true);
+                }}
+                onSelectForStudio={handleSelectForStudio}
+              />
+            )}
 
-        {activeTab === "studio" && (
-          <PromptStudioTab
-            vehicles={vehicles}
-            wraps={wraps}
-            environments={environmentPresets}
-            cameraAngles={cameraAnglePresets}
-            selectedVehicleId={studioCarId}
-            selectedWrapId={studioWrapId}
-            onTriggerToast={triggerToast}
-            onSavePromptToVault={handleAddPrompt}
-          />
-        )}
+            {activeTab === "studio" && (
+              <PromptStudioTab
+                vehicles={vehicles}
+                wraps={wraps}
+                environments={environmentPresets}
+                cameraAngles={cameraAnglePresets}
+                selectedVehicleId={studioCarId}
+                selectedWrapId={studioWrapId}
+                onTriggerToast={triggerToast}
+                onSavePromptToVault={handleAddPrompt}
+              />
+            )}
 
-        {activeTab === "chat" && (
-          <ChatAiTab
-            vehicles={vehicles}
-            wraps={wraps}
-            skills={skills}
-            prompts={prompts}
-            onTriggerToast={triggerToast}
-            onNavigateToStudio={(carId, wrapId) => {
-              setStudioCarId(carId);
-              setStudioWrapId(wrapId);
-              setActiveTab("studio");
-            }}
-          />
+            {activeTab === "chat" && (
+              <ChatAiTab
+                vehicles={vehicles}
+                wraps={wraps}
+                skills={skills}
+                prompts={prompts}
+                onTriggerToast={triggerToast}
+                onNavigateToStudio={(carId, wrapId) => {
+                  setStudioCarId(carId);
+                  setStudioWrapId(wrapId);
+                  setActiveTab("studio");
+                }}
+              />
+            )}
+          </>
+        ) : (
+          <div className="p-16 text-center text-zinc-500 font-mono text-xs flex items-center justify-center gap-3">
+            <div className="w-4 h-4 rounded-full border-2 border-cyan-400 border-t-transparent animate-spin" />
+            <span>Yapay zeka arşivi yükleniyor...</span>
+          </div>
         )}
       </main>
 

@@ -1,0 +1,16 @@
+[ARAÇ] = 
+[MATERYAL] = 
+
+Tamamı binlerce adet [MATERYAL] ile kaplanmış bir [ARAÇ] içeren hiper gerçekçi sinematik video oluştur.
+Her bir [MATERYAL] parçası ayrı ayrı 3D hacimli, keskin speküler yansımalar veren ve gövdeyi kesintisiz kaplayan yapıda olmalı. Panel aralıkları bile [MATERYAL] ile dolu görünmeli.
+Görsel Detaylar: Krom veya altın kontrast detaylar.
+Mekân: Karanlık lüks showroom, siyah zemin, hafif sis.
+Sahne Sıralaması:
+1. HOOK: Bir avuç [MATERYAL] parçasının gövdeye düşüp yapışmasının slow-motion makro çekimi.
+2. Malzeme Makro: [MATERYAL] dokusu üzerinde ışık gezsin, her parçada ayrı yansıma.
+3. Üstten: Binlerce [MATERYAL] üzerinde tavan ışıklarının kırılması.
+4. Önden Kahraman: Farlar yanık, [MATERYAL] yüzeyde far yansıması.
+5. Yan Profil Orbital: Kapı kolları [MATERYAL] arasından çıksın.
+6. İç Mekân: Koltuklarda [MATERYAL] ile uyumlu dikiş detayı.
+7. Arkadan Final: Stop lambaları yanık, [MATERYAL] ile kaplı difüzör.
+KURAL: [MATERYAL] boyutu, dizilimi ve parlaklığı hiç değişmemeli. 8K, ray tracing, 9:16, 8 saniye.

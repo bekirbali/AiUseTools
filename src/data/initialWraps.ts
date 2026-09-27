@@ -9,7 +9,7 @@ export const initialWraps: WrapStyleItem[] = [
     colorPreview: "#3b1e54",
     secondaryColor: "#1a0b2e",
     promptSnippet: "wrapped in premium Satin Midnight Purple vinyl finish with subtle cobalt blue metallic undertones under specular lighting, non-glossy smooth satin reflection",
-    recommendedCars: ["Porsche 911 GT3 RS", "Nissan Skyline GT-R R34", "BMW M4 Competition"]
+    recommendedCars: ["Porsche 911 GT3 RS (992)", "BMW M4 Competition (G82)", "Nissan GT-R Nismo (R35 / Liberty Walk)"]
   },
   {
     id: "wrap-2",
@@ -19,7 +19,7 @@ export const initialWraps: WrapStyleItem[] = [
     colorPreview: "#7c8288",
     secondaryColor: "#595e63",
     promptSnippet: "wrapped in matte Nardo Grey chalk vinyl finish, smooth zero-gloss industrial finish contrasting with glossy exposed black carbon fiber accents",
-    recommendedCars: ["BMW M4 Competition", "Audi RS6 Avant Performance", "Mercedes-AMG GT Black Series"]
+    recommendedCars: ["BMW M4 Competition (G82)", "Audi RS6 Avant (C8)", "Mercedes-AMG GT Black Series"]
   },
   {
     id: "wrap-3",
@@ -29,7 +29,7 @@ export const initialWraps: WrapStyleItem[] = [
     colorPreview: "#d1d5db",
     secondaryColor: "#64748b",
     promptSnippet: "wrapped in liquid brushed titanium mirror chrome finish, liquid mercury specular highlights, highly detailed environmental reflections",
-    recommendedCars: ["Lamborghini Revuelto V12 Hybrid", "Cyberpunk DeLorean DMC-12", "Ferrari 296 GTB"]
+    recommendedCars: ["Lamborghini Revuelto", "Ferrari 296 GTB", "Koenigsegg Jesko Absolut"]
   },
   {
     id: "wrap-4",
@@ -39,7 +39,7 @@ export const initialWraps: WrapStyleItem[] = [
     colorPreview: "#7ec8e3",
     secondaryColor: "#ff6f00",
     promptSnippet: "wrapped in classic Gulf Racing livery with powder sky blue body, vibrant tangerine orange center dual racing stripes and vintage racing roundel number",
-    recommendedCars: ["Porsche 911 GT3 RS", "Ferrari 296 GTB", "Nissan Skyline GT-R R34"]
+    recommendedCars: ["Porsche 911 GT3 RS (992)", "Ferrari SF90 Stradale", "McLaren Senna"]
   },
   {
     id: "wrap-5",
@@ -49,7 +49,7 @@ export const initialWraps: WrapStyleItem[] = [
     colorPreview: "#059669",
     secondaryColor: "#7c3aed",
     promptSnippet: "wrapped in color-shifting chameleon pearlescent wrap transitioning between metallic emerald green, royal violet, and deep copper bronze across curves",
-    recommendedCars: ["Nissan Skyline GT-R R34", "Porsche 911 GT3 RS", "Lamborghini Revuelto V12 Hybrid"]
+    recommendedCars: ["Apollo Intensa Emozione (Apollo IE)", "Lamborghini Huracán STO", "McLaren 750S"]
   },
   {
     id: "wrap-6",
@@ -59,7 +59,7 @@ export const initialWraps: WrapStyleItem[] = [
     colorPreview: "#064e3b",
     secondaryColor: "#d97706",
     promptSnippet: "wrapped in satin British Racing Green finish, deep rich forest green metallic with subtle satin sheen, complemented by satin bronze wheels",
-    recommendedCars: ["Porsche 911 GT3 RS", "BMW M4 Competition", "Ferrari 296 GTB"]
+    recommendedCars: ["Aston Martin DBX707", "Bentley Continental GT Speed", "Range Rover Sport SV"]
   },
   {
     id: "wrap-7",
@@ -69,7 +69,7 @@ export const initialWraps: WrapStyleItem[] = [
     colorPreview: "#18181b",
     secondaryColor: "#27272a",
     promptSnippet: "wrapped in matte stealth charcoal black with exposed marbled forged carbon fiber hood, roof, and front aerodynamic splitter",
-    recommendedCars: ["Lamborghini Revuelto V12 Hybrid", "Mercedes-AMG GT Black Series", "Audi RS6 Avant Performance"]
+    recommendedCars: ["Rolls-Royce Cullinan Black Badge", "Mercedes-Maybach S680", "BMW XM Label Red"]
   },
   {
     id: "wrap-8",
@@ -79,6 +79,6 @@ export const initialWraps: WrapStyleItem[] = [
     colorPreview: "#22d3ee",
     secondaryColor: "#0f172a",
     promptSnippet: "wrapped in matte gunmetal grey with glowing electroluminescent neon cyan circuit trace graphics and subtle holographic cyber telemetry decals",
-    recommendedCars: ["Cyberpunk DeLorean DMC-12", "Lamborghini Revuelto V12 Hybrid", "Nissan Skyline GT-R R34"]
+    recommendedCars: ["Bugatti Tourbillon", "Pagani Utopia", "Aston Martin Valkyrie"]
   }
 ];
