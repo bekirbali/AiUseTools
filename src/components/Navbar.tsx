@@ -81,8 +81,13 @@ export default function Navbar({
         <div className="flex items-center justify-between h-16 gap-4">
           {/* Logo / Brand */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-white/[0.08] border border-white/20 flex items-center justify-center font-mono font-black text-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.25)]">
-              AI
+            <div className="relative w-9 h-9 rounded-xl bg-[#090b10] border border-cyan-500/30 flex items-center justify-center p-1 shadow-[0_0_20px_rgba(6,182,212,0.25)] hover:border-cyan-400/60 transition-all cursor-pointer group">
+              <div className="absolute inset-0 rounded-xl bg-cyan-500/10 blur-md pointer-events-none group-hover:bg-cyan-500/20 transition-all" />
+              <img
+                src="/logo.svg"
+                alt="AI Tools Hub Logo"
+                className="w-full h-full object-contain relative z-10 drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]"
+              />
             </div>
             <div>
               <div className="flex items-center gap-2">
