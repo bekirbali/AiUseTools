@@ -40,21 +40,21 @@ export default function Navbar({
   const tabs: TabItem[] = [
     {
       id: "skills",
-      label: "AI Skilleri & CLI",
+      label: "AI Skilleri",
       icon: Terminal,
       count: totalSkillsCount,
       badgeColor: "text-cyan-400 bg-cyan-500/10 border-cyan-500/20",
     },
     {
       id: "prompts",
-      label: "Sosyal Medya Promptları",
+      label: "Promptlar",
       icon: Share2,
       count: totalPromptsCount,
       badgeColor: "text-violet-400 bg-violet-500/10 border-violet-500/20",
     },
     {
       id: "garage",
-      label: "Araç & Kaplama Garajı",
+      label: "Araç & Kaplama",
       icon: Car,
       count: totalCarsCount,
       badgeColor: "text-amber-400 bg-amber-500/10 border-amber-500/20",
@@ -68,7 +68,7 @@ export default function Navbar({
     },
     {
       id: "chat",
-      label: "Omni-AI Asistanı",
+      label: "Omni-AI",
       icon: Bot,
       badge: "ONLINE",
       badgeColor: "text-sky-400 bg-sky-500/15 border-sky-500/30",
@@ -110,7 +110,7 @@ export default function Navbar({
                   type="button"
                   onClick={() => onTabChange(tab.id as any)}
                   aria-pressed={isActive}
-                  className={`px-3 py-2 rounded-lg text-xs font-mono font-medium transition-colors duration-150 flex items-center gap-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none ${
+                  className={`px-3 py-2 rounded-lg text-xs whitespace-nowrap font-mono font-medium transition-colors duration-150 flex items-center gap-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none ${
                     isActive
                       ? "bg-white/[0.1] text-white border border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.06)]"
                       : "text-zinc-400 hover:text-zinc-200 hover:bg-white/[0.04]"

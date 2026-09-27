@@ -16,19 +16,28 @@ import {
   Camera,
   Play,
   Check,
+  FileText,
 } from "lucide-react";
+import CaptionTemplatesTab from "./CaptionTemplatesTab";
 
 interface PromptsTabProps {
   prompts: SocialPromptItem[];
   onTriggerToast: (msg: string) => void;
   onOpenAddModal: () => void;
+  initialMode?: "prompts" | "captions";
+  initialVehicle?: string;
+  initialMaterial?: string;
 }
 
 export default function PromptsTab({
   prompts,
   onTriggerToast,
   onOpenAddModal,
+  initialMode = "prompts",
+  initialVehicle = "",
+  initialMaterial = "",
 }: PromptsTabProps) {
+  const [activeMode, setActiveMode] = useState<"prompts" | "captions">(initialMode);
   const [selectedPromptId, setSelectedPromptId] = useState<string>("all");
   const [selectedModel, setSelectedModel] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
@@ -71,8 +80,45 @@ export default function PromptsTab({
         </button>
       </div>
 
-      {/* Filter Bars */}
-      <div className="space-y-3">
+      {/* Mode Switcher: Video Prompts vs Açıklama Şablonları */}
+      <div className="flex items-center gap-2">
+        <button
+          type="button"
+          onClick={() => setActiveMode("prompts")}
+          className={`px-4 py-2 rounded-lg text-xs font-mono font-bold flex items-center gap-2 transition-all cursor-pointer ${
+            activeMode === "prompts"
+              ? "bg-violet-500/20 text-violet-300 border border-violet-500/40 shadow-[0_0_15px_rgba(168,85,247,0.25)]"
+              : "text-zinc-400 hover:text-white"
+          }`}
+        >
+          <Play className="w-3.5 h-3.5" />
+          <span>VİDEO PROMPTLARI ({prompts.length})</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setActiveMode("captions")}
+          className={`px-4 py-2 rounded-lg text-xs font-mono font-bold flex items-center gap-2 transition-all cursor-pointer ${
+            activeMode === "captions"
+              ? "bg-pink-500/20 text-pink-300 border border-pink-500/40 shadow-[0_0_15px_rgba(236,72,153,0.25)]"
+              : "text-zinc-400 hover:text-white"
+          }`}
+        >
+          <FileText className="w-3.5 h-3.5" />
+          <span>AÇIKLAMA ŞABLONLARI (INSTA, TIKTOK, YT)</span>
+        </button>
+      </div>
+
+      {activeMode === "captions" ? (
+        <CaptionTemplatesTab
+          onTriggerToast={onTriggerToast}
+          initialVehicle={initialVehicle}
+          initialMaterial={initialMaterial}
+        />
+      ) : (
+        <>
+          {/* Filter Bars */}
+          <div className="space-y-3">
         {/* Per-Prompt Navigation Tabs */}
         <div className="flex flex-wrap items-center gap-2 pb-1">
           {/* Tüm Promptlar Tab */}
@@ -303,6 +349,8 @@ export default function PromptsTab({
           </div>
         )}
       </div>
+        </>
+      )}
     </div>
   );
 }
