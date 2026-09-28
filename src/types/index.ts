@@ -18,6 +18,7 @@ export interface SkillItem {
   docs?: string;
   fullContent?: string;
   rulesOnly?: string;
+  externalUrl?: string;
   isCustom?: boolean;
 }
 

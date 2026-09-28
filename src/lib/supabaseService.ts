@@ -30,6 +30,7 @@ export async function getSkills(): Promise<SkillItem[]> {
         docs: d.docs || matchInit?.docs,
         fullContent: matchInit?.fullContent,
         rulesOnly: matchInit?.rulesOnly,
+        externalUrl: matchInit?.externalUrl,
         isCustom: d.is_custom ?? false,
       };
     });

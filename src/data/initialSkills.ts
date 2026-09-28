@@ -54,6 +54,17 @@ export const initialSkills: SkillItem[] = [
     rulesOnly: AGENTS_RULES_ONLY,
   },
   {
+    id: "skill-awesome-design-md",
+    name: "Awesome DESIGN.md Şablonları (VoltAgent)",
+    category: "design",
+    description: "Yapay zeka asistanları için hazır UI tasarım sistemleri ve DESIGN.md arşivi. Buradan dilediğiniz arayüz stilini seçip projenizin kök dizinine DESIGN.md olarak ekleyebilirsiniz.",
+    installCommand: "https://github.com/VoltAgent/awesome-design-md/tree/main/design-md",
+    usageExample: "Beğendiğiniz tasarım sistemini projenin kök dizinine DESIGN.md olarak ekleyin. Ajan tüm bileşenleri bu stile göre üretir.",
+    tags: ["DESIGN.md", "Tasarım Sistemleri", "VoltAgent", "UI/UX", "Anti-Slop", "GitHub"],
+    docs: "Linear, Apple, Supabase, Retrotech, Cyberpunk vb. popüler ve profesyonel tasarım sistemlerini içerir.",
+    externalUrl: "https://github.com/VoltAgent/awesome-design-md/tree/main/design-md",
+  },
+  {
     id: "skill-1",
     name: "Design Guidelines (web-design-guidelines)",
     category: "design",
