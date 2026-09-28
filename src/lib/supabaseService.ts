@@ -17,7 +17,7 @@ export async function getSkills(): Promise<SkillItem[]> {
       }
       return initialSkills;
     }
-    return data.map((d) => {
+    const dbItems: SkillItem[] = data.map((d) => {
       const matchInit = initialSkills.find((init) => init.id === d.id);
       return {
         id: d.id,
@@ -28,9 +28,14 @@ export async function getSkills(): Promise<SkillItem[]> {
         usageExample: d.usage_example || matchInit?.usageExample || d.install_command,
         tags: d.tags || [],
         docs: d.docs || matchInit?.docs,
+        fullContent: matchInit?.fullContent,
+        rulesOnly: matchInit?.rulesOnly,
         isCustom: d.is_custom ?? false,
       };
     });
+    // Ensure all built-in initial skills (like AGENTS.md) are present
+    const missingInitials = initialSkills.filter((init) => !data.some((d) => d.id === init.id));
+    return [...missingInitials, ...dbItems];
   } catch (err) {
     console.error("Supabase getSkills error:", err);
     return initialSkills;
