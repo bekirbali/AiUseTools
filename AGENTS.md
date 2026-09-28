@@ -21,4 +21,3 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
    - **Görsel Kalabalık ve Taşma (Clutter / Overflow):** Ekranı gereksiz yere dolduran, yatayda kaymaya zorlayan veya hantal duran başlık/metin yoğunluğu varsa derhal sadeleştirilmelidir.
    - **İnsan Gözüyle Ön İnceleme:** Ekran görüntüsü alındığında alt ajan sadece teknik başarıya değil; "Bu sayfa göze şık ve düzenli geliyor mu, yoksa kaba mı duruyor?" sorusuna dürüst yanıt vermelidir.
    - **Gereksiz İnisiyatif Yasağı:** Kullanıcı sadece tespit veya geri bildirim yaptığında ("böyle kalsın", "neyse" dediğinde) açık talimat gelmedikçe kod düzenlemesi başlatılamaz.
-

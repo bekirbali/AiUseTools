@@ -1,5 +1,6 @@
 export type SkillCategory =
   | "agent"
+  | "rules"
   | "dev"
   | "terminal"
   | "design"
@@ -15,6 +16,9 @@ export interface SkillItem {
   usageExample: string;
   tags: string[];
   docs?: string;
+  fullContent?: string;
+  rulesOnly?: string;
+  externalUrl?: string;
   isCustom?: boolean;
 }
 

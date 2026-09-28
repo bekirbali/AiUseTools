@@ -1,6 +1,69 @@
 import { SkillItem } from "@/types";
 
+export const AGENTS_MD_RAW = `<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in \`node_modules/next/dist/docs/\` (resolved from this file's directory; in monorepos the \`next\` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by \`next dev\` — verify at \`node_modules/next/dist/server/lib/generate-agent-files.js\`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
+
+# Proje Kuralları (Developer Rules)
+
+1. **Net Soru Cümlesi Kuralı (Strict):**
+   Kullanıcı net bir soru cümlesi sorduğunda (durum tespiti, bilgi veya inceleme sorusu):
+   - **KESİNLİKLE hiçbir kod değişikliği, dosya düzenlemesi veya otonom işlem yapma.**
+   - Sadece ve sadece sorulan sorunun doğrudan cevabını ver.
+   - Değişiklik veya aksiyon gerekiyorsa, bunu önce kullanıcıya söyle ve açık onay iste.
+2. **Görsel & Ergonomi Zorunlu Denetim Kuralı (Visual & UX Audit):**
+   Arayüzde (UI) yapılan her değişiklik sonrasında sadece "kod çalıştı mı / tıklandı mı" kontrolü YETMEZDİR. Aşağıdaki 4 maddeye göre eleştirel gözle bakılmalıdır:
+   - **Sekme & Buton Kompaktlığı:** Sekmeler, filtreler ve butonlar asla uzun cümle/açıklama içeremez. En fazla 1-3 kelimelik net, kısa etiketler olmalıdır (Örn: "Akan Materyalli & Çatlak Zırhlı..." yerine doğrudan "Akan Detay").
+   - **Görsel Kalabalık ve Taşma (Clutter / Overflow):** Ekranı gereksiz yere dolduran, yatayda kaymaya zorlayan veya hantal duran başlık/metin yoğunluğu varsa derhal sadeleştirilmelidir.
+   - **İnsan Gözüyle Ön İnceleme:** Ekran görüntüsü alındığında alt ajan sadece teknik başarıya değil; "Bu sayfa göze şık ve düzenli geliyor mu, yoksa kaba mı duruyor?" sorusuna dürüst yanıt vermelidir.
+   - **Gereksiz İnisiyatif Yasağı:** Kullanıcı sadece tespit veya geri bildirim yaptığında ("böyle kalsın", "neyse" dediğinde) açık talimat gelmedikçe kod düzenlemesi başlatılamaz.
+`;
+
+export const AGENTS_RULES_ONLY = `# Proje Kuralları (Developer Rules)
+
+1. **Net Soru Cümlesi Kuralı (Strict):**
+   Kullanıcı net bir soru cümlesi sorduğunda (durum tespiti, bilgi veya inceleme sorusu):
+   - **KESİNLİKLE hiçbir kod değişikliği, dosya düzenlemesi veya otonom işlem yapma.**
+   - Sadece ve sadece sorulan sorunun doğrudan cevabını ver.
+   - Değişiklik veya aksiyon gerekiyorsa, bunu önce kullanıcıya söyle ve açık onay iste.
+2. **Görsel & Ergonomi Zorunlu Denetim Kuralı (Visual & UX Audit):**
+   Arayüzde (UI) yapılan her değişiklik sonrasında sadece "kod çalıştı mı / tıklandı mı" kontrolü YETMEZDİR. Aşağıdaki 4 maddeye göre eleştirel gözle bakılmalıdır:
+   - **Sekme & Buton Kompaktlığı:** Sekmeler, filtreler ve butonlar asla uzun cümle/açıklama içeremez. En fazla 1-3 kelimelik net, kısa etiketler olmalıdır (Örn: "Akan Materyalli & Çatlak Zırhlı..." yerine doğrudan "Akan Detay").
+   - **Görsel Kalabalık ve Taşma (Clutter / Overflow):** Ekranı gereksiz yere dolduran, yatayda kaymaya zorlayan veya hantal duran başlık/metin yoğunluğu varsa derhal sadeleştirilmelidir.
+   - **İnsan Gözüyle Ön İnceleme:** Ekran görüntüsü alındığında alt ajan sadece teknik başarıya değil; "Bu sayfa göze şık ve düzenli geliyor mu, yoksa kaba mı duruyor?" sorusuna dürüst yanıt vermelidir.
+   - **Gereksiz İnisiyatif Yasağı:** Kullanıcı sadece tespit veya geri bildirim yaptığında ("böyle kalsın", "neyse" dediğinde) açık talimat gelmedikçe kod düzenlemesi başlatılamaz.
+`;
+
 export const initialSkills: SkillItem[] = [
+  {
+    id: "skill-agents-md",
+    name: "AGENTS.md (Proje & Ajan Kuralları)",
+    category: "rules",
+    description: "Yapay zeka kodlama ajanları (Antigravity, Cursor, Claude Code) için soru protokolü, otonom kod engeli ve UI/UX görsel denetim direktifleri. Yeni projelere doğrudan kopyalayıp ekleyin.",
+    installCommand: "touch AGENTS.md",
+    usageExample: "Projenin kök dizininde AGENTS.md dosyası oluşturup içeriği yapıştırın. Yapay zeka asistanı kuralları otomatik okur.",
+    tags: ["AGENTS.md", "Proje Kuralları", "Antigravity", "Cursor", "Strict Rules", "Next.js"],
+    docs: "Net soru kuralı, görsel ve ergonomi UI denetimi, buton kompaktlığı ve gereksiz inisiyatif yasağını içerir.",
+    fullContent: AGENTS_MD_RAW,
+    rulesOnly: AGENTS_RULES_ONLY,
+  },
+  {
+    id: "skill-awesome-design-md",
+    name: "Awesome DESIGN.md Şablonları (VoltAgent)",
+    category: "design",
+    description: "Yapay zeka asistanları için hazır UI tasarım sistemleri ve DESIGN.md arşivi. Buradan dilediğiniz arayüz stilini seçip projenizin kök dizinine DESIGN.md olarak ekleyebilirsiniz.",
+    installCommand: "https://github.com/VoltAgent/awesome-design-md/tree/main/design-md",
+    usageExample: "Beğendiğiniz tasarım sistemini projenin kök dizinine DESIGN.md olarak ekleyin. Ajan tüm bileşenleri bu stile göre üretir.",
+    tags: ["DESIGN.md", "Tasarım Sistemleri", "VoltAgent", "UI/UX", "Anti-Slop", "GitHub"],
+    docs: "Linear, Apple, Supabase, Retrotech, Cyberpunk vb. popüler ve profesyonel tasarım sistemlerini içerir.",
+    externalUrl: "https://github.com/VoltAgent/awesome-design-md/tree/main/design-md",
+  },
   {
     id: "skill-1",
     name: "Design Guidelines (web-design-guidelines)",
