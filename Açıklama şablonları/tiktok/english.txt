@@ -1,10 +1,14 @@
 Caption Template:
 
 Code
-POV: You wrapped your [CAR] in [MATERIAL] ✨
+POV: your [CAR] is [MATERIAL] 😳 ✨
 
-Real or AI? #carwrap #cartok #fyp # [CAR BRAND]
+Real or AI? #carwrap #[CAR_BRAND]
+
 Price variation:
 
 Code
 How much would this wrap cost? 💸 [CAR] x [MATERIAL] #carwrap #carsoftiktok
+
+Screen text (add in the first 1 second):
+This [CAR] is NOT REAL

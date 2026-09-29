@@ -55,11 +55,11 @@ export const captionTemplates: CaptionPlatformData[] = [
         hashtags: ["#carwrap", "#wrapaesthetic", "#conceptcar", "#[ARAÇ_MARKASI]", "#supercars", "#reels"]
       },
       en: {
-        caption: `This wrap is NOT REAL [MATERIAL] 🤯👇\n\n[CAR] x [MATERIAL]\n\nWould you drive it? How much would it cost?\n\nSave → Send to your car guy\nWhat should I wrap next? Comment below\n\n#carwrap #wrapaesthetic #conceptcar #[CAR_BRAND]`,
+        caption: `This is not real [MATERIAL] 🤯👇\n\n[CAR] fully wrapped in a [MATERIAL]\n\nWhat would it cost?\n\nSave→ Share with your friends\nWhat should be next?\n\n#carwrap #wrapaesthetic #[CAR_BRAND]`,
         debateVariation: `They said they do this for $50k in the shop...\n\n[CAR] - [MATERIAL] wrap\n\nWorth it or not? Let the fight start 👇`,
         hookText: `[MATERIAL] [CAR]`,
         hookTip: "Cover text overlay for Instagram Reels.",
-        hashtags: ["#carwrap", "#wrapaesthetic", "#conceptcar", "#[CAR_BRAND]", "#hypercar", "#automotive"]
+        hashtags: ["#carwrap", "#wrapaesthetic", "#[CAR_BRAND]", "#conceptcar", "#supercars"]
       }
     }
   },
@@ -85,11 +85,11 @@ export const captionTemplates: CaptionPlatformData[] = [
         hashtags: ["#carwrap", "#cartok", "#fyp", "#[ARAÇ_MARKASI]", "#arabakapla", "#viraltiktok"]
       },
       en: {
-        caption: `POV: You wrapped your [CAR] in [MATERIAL] ✨\n\nReal or AI? #carwrap #cartok #fyp #[CAR_BRAND]`,
+        caption: `POV: your [CAR] is [MATERIAL] 😳 ✨\n\nReal or AI? #carwrap #[CAR_BRAND]`,
         debateVariation: `How much would this wrap cost? 💸 [CAR] x [MATERIAL] #carwrap #carsoftiktok`,
         hookText: `This [CAR] is NOT REAL`,
         hookTip: "Add on-screen in the first second. Boosts retention by 40% because viewers freeze to verify.",
-        hashtags: ["#carwrap", "#cartok", "#fyp", "#[CAR_BRAND]", "#carsoftiktok", "#viral"]
+        hashtags: ["#carwrap", "#[CAR_BRAND]", "#cartok", "#fyp", "#viral"]
       }
     }
   },
@@ -121,14 +121,14 @@ export const captionTemplates: CaptionPlatformData[] = [
         hashtags: ["#[ARAÇ_MARKASI]", "#carwrap", "#aiart", "#concept", "#shorts", "#automotive"]
       },
       en: {
-        title: `This [CAR] is made of pure [MATERIAL] - Real? 🤯`,
+        title: `This [CAR] is [MATERIAL] - Real or AI? 😳`,
         titleVariations: [
           `This [CAR] wrapped in [MATERIAL] - How much?`,
           `[CAR] x [MATERIAL] - Did we ruin it? 👇`
         ],
-        description: `This [CAR] concept is fully wrapped in [MATERIAL]. Would you drive it if it was real?\n\nThis video was generated with Google Flow - Omni 1.1 as an AI concept wrap design.\n\nWhat car should I do next? Comment below.\n\n#[CAR_BRAND] #carwrap #aiart #conceptcar #shorts`,
+        description: `Is this [CAR] wrapped with [MATERIAL] Real or AI\n\nThis video was generated with Google Flow - Omni 1.1 as an AI concept wrap design.\n\nWhat car should I do next? Comment below.\n\n#[CAR_BRAND] #carwrap #aiart #conceptcar #shorts`,
         pinnedComment: `Real wrap or AI? Guess below 👇 What should I wrap next?`,
-        caption: `This [CAR] is made of pure [MATERIAL] - Real? 🤯`,
+        caption: `This [CAR] is [MATERIAL] - Real or AI? 😳`,
         hookText: `[MATERIAL] [CAR]`,
         hookTip: "Shorts thumbnail and opening hook phrase.",
         hashtags: ["#[CAR_BRAND]", "#carwrap", "#aiart", "#conceptcar", "#shorts", "#supercars"]

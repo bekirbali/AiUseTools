@@ -1,13 +1,28 @@
 "use client";
 
-import { CheckCircle2, Sparkles, X } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { Sparkles, X } from "lucide-react";
 
 interface ToastProps {
   message: string | null;
   onClose: () => void;
+  duration?: number;
 }
 
-export default function Toast({ message, onClose }: ToastProps) {
+export default function Toast({ message, onClose, duration = 5000 }: ToastProps) {
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
+
+  useEffect(() => {
+    if (!message) return;
+
+    const timer = setTimeout(() => {
+      onCloseRef.current();
+    }, duration);
+
+    return () => clearTimeout(timer);
+  }, [message, duration]);
+
   if (!message) return null;
 
   return (
@@ -29,7 +44,7 @@ export default function Toast({ message, onClose }: ToastProps) {
         type="button"
         onClick={onClose}
         aria-label="Bildirimi kapat"
-        className="ml-3 p-1 rounded hover:bg-white/10 text-zinc-400 hover:text-white focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none transition-colors"
+        className="ml-3 p-1 rounded hover:bg-white/10 text-zinc-400 hover:text-white focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none transition-colors cursor-pointer"
       >
         <X className="w-4 h-4" aria-hidden="true" />
       </button>
