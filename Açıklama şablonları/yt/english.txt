@@ -1,25 +1,27 @@
 Title Template (keep under 60 chars):
 
 Code
-This [CAR] is made of pure [MATERIAL] - Real? 🤯
+This [CAR] is [MATERIAL] - Real or AI? 😳
+
 Other variations:
 
 This [CAR] wrapped in [MATERIAL] - How much?
 [CAR] x [MATERIAL] - Did we ruin it? 👇
+
 Description Template:
 
 Code
-This [CAR] concept is fully wrapped in [MATERIAL]. Would you drive it if it was real?
+Is this [CAR] wrapped with [MATERIAL] Real or AI
 
 This video was generated with Google Flow - Omni 1.1 as an AI concept wrap design.
 
 What car should I do next? Comment below.
 
-#[CAR BRAND] #carwrap #aiart #conceptcar
+#[CAR_BRAND] #carwrap #aiart #conceptcar #shorts
 
-2 lines hidden
 Pinned Comment:
 Real wrap or AI? Guess below 👇 What should I wrap next?
 
 Example filled:
-Title: This GT-R Nismo is made of pure WOOD - Would you drive it?
+Title: This BMW M4 is Growing Glowing Veins - Real or AI? 😳
+Description: Is this BMW M4 Competition (G82) wrapped with Biomorphic Chitin Exoskeleton and Bioluminescent Micro-Veins Real or AI

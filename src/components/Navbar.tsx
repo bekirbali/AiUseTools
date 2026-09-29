@@ -80,19 +80,19 @@ export default function Navbar({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 gap-4">
           {/* Logo / Brand */}
-          <div className="flex items-center gap-3">
-            <div className="relative w-9 h-9 rounded-xl bg-[#090b10] border border-cyan-500/30 flex items-center justify-center p-1 shadow-[0_0_20px_rgba(6,182,212,0.25)] hover:border-cyan-400/60 transition-all cursor-pointer group">
+          <div className="flex items-center gap-3 shrink-0">
+            <div className="relative w-10 h-10 shrink-0 aspect-square rounded-xl bg-[#090b10] border border-cyan-500/30 flex items-center justify-center p-1.5 shadow-[0_0_20px_rgba(6,182,212,0.25)] hover:border-cyan-400/60 transition-all cursor-pointer group">
               <div className="absolute inset-0 rounded-xl bg-cyan-500/10 blur-md pointer-events-none group-hover:bg-cyan-500/20 transition-all" />
               <img
                 src="/logo.svg"
-                alt="AI Tools Hub Logo"
+                alt="AI Studio Logo"
                 className="w-full h-full object-contain relative z-10 drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]"
               />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-mono text-sm font-bold tracking-wider text-white">
-                  STUDIO<span className="text-cyan-400">.OPS</span>
+                <span className="font-mono text-sm sm:text-base font-extrabold tracking-wider text-white">
+                  AI<span className="text-cyan-400 ml-1">STUDIO</span>
                 </span>
                 <span className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-mono bg-white/[0.05] text-zinc-400 border border-white/10">
                   v2.4

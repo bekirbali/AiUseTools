@@ -60,8 +60,8 @@ export default function CaptionTemplatesTab({
 
   // Quick preset samples
   const samplePresets = [
+    { v: "BMW M4 Competition (G82)", m: "Biomorphic Chitin Exoskeleton with Bioluminescent Micro-Veins", b: "bmwm4competition" },
     { v: "Porsche 911 GT3 RS", m: "24K Sıvı Altın Kintsugi Mermer", b: "Porsche" },
-    { v: "BMW M4 Competition", m: "Nardo Grey Saten Mat", b: "BMW" },
     { v: "Lamborghini Revuelto", m: "Yanardöner Ejderha Pulu", b: "Lamborghini" },
     { v: "Bugatti Tourbillon", m: "Sıvı Cıva Krom Zırh", b: "Bugatti" },
   ];
@@ -273,41 +273,79 @@ export default function CaptionTemplatesTab({
 
       {/* Template Cards Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        {/* Card 1: Ana Gönderi Metni (Caption) */}
+        {/* Card 1: Ana Gönderi Metni (Caption) veya YouTube Başlığı */}
         <div className="rounded-xl glass-panel p-5 border border-white/[0.08] flex flex-col justify-between space-y-4 hover:border-white/20 transition-all">
           <div className="space-y-3">
             <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
               <div className="flex items-center gap-2">
                 <FileText className="w-4 h-4 text-cyan-400" />
                 <h3 className="text-sm font-bold text-white font-mono">
-                  Ana Açıklama (Caption)
+                  {selectedPlatform === "youtube" ? "Shorts Başlığı" : "Ana Açıklama"}
                 </h3>
               </div>
               <span className="text-[10px] font-mono text-zinc-500 uppercase">
-                {selectedPlatform === "instagram" ? "Reels & Post" : selectedPlatform === "tiktok" ? "TikTok Açıklama" : "Shorts Açıklama"}
+                {selectedPlatform === "instagram" ? "Reels & Post" : selectedPlatform === "tiktok" ? "TikTok Açıklama" : "Shorts Title"}
               </span>
             </div>
 
             <div className="p-4 rounded-xl bg-[#090b10] border border-white/[0.06] select-text">
               <pre className="font-mono text-xs text-zinc-200 whitespace-pre-wrap leading-relaxed select-text font-sans">
-                {renderText(activeTemplate.caption || activeTemplate.description)}
+                {renderText(selectedPlatform === "youtube" ? (activeTemplate.title || activeTemplate.caption) : activeTemplate.caption)}
               </pre>
             </div>
           </div>
 
           <div className="flex items-center justify-between pt-2 border-t border-white/[0.06]">
             <span className="text-[10px] font-mono text-zinc-500">
-              {renderText(activeTemplate.caption || activeTemplate.description).length} karakter
+              {renderText(selectedPlatform === "youtube" ? (activeTemplate.title || activeTemplate.caption) : activeTemplate.caption).length} karakter
             </span>
             <CopyButton
-              textToCopy={renderText(activeTemplate.caption || activeTemplate.description)}
-              label="Açıklamayı Kopyala"
+              textToCopy={renderText(selectedPlatform === "youtube" ? (activeTemplate.title || activeTemplate.caption) : activeTemplate.caption)}
+              label={selectedPlatform === "youtube" ? "Başlığı Kopyala" : "Açıklamayı Kopyala"}
               size="sm"
               className="bg-cyan-500/20 hover:bg-cyan-500/30 border-cyan-500/50 text-cyan-200"
-              onCopied={() => onTriggerToast(`${currentPlatformData.platformName} açıklaması kopyalandı! 📋`)}
+              onCopied={() => onTriggerToast(`${currentPlatformData.platformName} ${selectedPlatform === "youtube" ? "başlığı" : "açıklaması"} kopyalandı! 📋`)}
             />
           </div>
         </div>
+
+        {/* Card 1.5: YouTube Özel Açıklama (Description) */}
+        {selectedPlatform === "youtube" && activeTemplate.description && (
+          <div className="rounded-xl glass-panel p-5 border border-white/[0.08] flex flex-col justify-between space-y-4 hover:border-white/20 transition-all">
+            <div className="space-y-3">
+              <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
+                <div className="flex items-center gap-2">
+                  <FileText className="w-4 h-4 text-red-400" />
+                  <h3 className="text-sm font-bold text-white font-mono">
+                    Shorts Açıklaması
+                  </h3>
+                </div>
+                <span className="text-[10px] font-mono text-red-400/80 uppercase">
+                  Description
+                </span>
+              </div>
+
+              <div className="p-4 rounded-xl bg-[#090b10] border border-white/[0.06] select-text">
+                <pre className="font-mono text-xs text-zinc-200 whitespace-pre-wrap leading-relaxed select-text font-sans">
+                  {renderText(activeTemplate.description)}
+                </pre>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between pt-2 border-t border-white/[0.06]">
+              <span className="text-[10px] font-mono text-zinc-500">
+                {renderText(activeTemplate.description).length} karakter
+              </span>
+              <CopyButton
+                textToCopy={renderText(activeTemplate.description)}
+                label="Açıklamayı Kopyala"
+                size="sm"
+                className="bg-red-500/20 hover:bg-red-500/30 border-red-500/50 text-red-200"
+                onCopied={() => onTriggerToast("YouTube açıklaması kopyalandı! 📋")}
+              />
+            </div>
+          </div>
+        )}
 
         {/* Card 2: Tartışma / Merak Varyasyonu (Debate Variation) */}
         <div className="rounded-xl glass-panel p-5 border border-white/[0.08] flex flex-col justify-between space-y-4 hover:border-white/20 transition-all">
