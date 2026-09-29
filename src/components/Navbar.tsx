@@ -98,9 +98,6 @@ export default function Navbar({
                   v2.4
                 </span>
               </div>
-              <p className="text-[10px] font-mono text-zinc-400 hidden sm:block">
-                AI Tooling, Prompts & Automotive Vault
-              </p>
             </div>
           </div>
 
