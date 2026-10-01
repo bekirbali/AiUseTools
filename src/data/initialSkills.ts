@@ -17,12 +17,14 @@ This block is written and re-added by \`next dev\` — verify at \`node_modules/
    - **KESİNLİKLE hiçbir kod değişikliği, dosya düzenlemesi veya otonom işlem yapma.**
    - Sadece ve sadece sorulan sorunun doğrudan cevabını ver.
    - Değişiklik veya aksiyon gerekiyorsa, bunu önce kullanıcıya söyle ve açık onay iste.
-2. **Görsel & Ergonomi Zorunlu Denetim Kuralı (Visual & UX Audit):**
-   Arayüzde (UI) yapılan her değişiklik sonrasında sadece "kod çalıştı mı / tıklandı mı" kontrolü YETMEZDİR. Aşağıdaki 4 maddeye göre eleştirel gözle bakılmalıdır:
-   - **Sekme & Buton Kompaktlığı:** Sekmeler, filtreler ve butonlar asla uzun cümle/açıklama içeremez. En fazla 1-3 kelimelik net, kısa etiketler olmalıdır (Örn: "Akan Materyalli & Çatlak Zırhlı..." yerine doğrudan "Akan Detay").
-   - **Görsel Kalabalık ve Taşma (Clutter / Overflow):** Ekranı gereksiz yere dolduran, yatayda kaymaya zorlayan veya hantal duran başlık/metin yoğunluğu varsa derhal sadeleştirilmelidir.
-   - **İnsan Gözüyle Ön İnceleme:** Ekran görüntüsü alındığında alt ajan sadece teknik başarıya değil; "Bu sayfa göze şık ve düzenli geliyor mu, yoksa kaba mı duruyor?" sorusuna dürüst yanıt vermelidir.
-   - **Gereksiz İnisiyatif Yasağı:** Kullanıcı sadece tespit veya geri bildirim yaptığında ("böyle kalsın", "neyse" dediğinde) açık talimat gelmedikçe kod düzenlemesi başlatılamaz.
+2. **Görsel & Ergonomi Denetim Kuralı (Visual & UX Audit):**
+   - **Küçük Rötuşlar (Hızlı İşlem):** Font, renk, metin, padding/margin gibi küçük stil ve rötuş işlemlerinde **kesinlikle ekran görüntüsü alma veya ağır tarayıcı denetimi döngüsüne girilmez**. Kod doğrudan, hızlı ve temiz bir şekilde uygulanır.
+   - **Büyük Sayfa / Bileşen Tasarımları (Kritik Denetim):** Sıfırdan sayfa tasarımı veya büyük bileşen revizyonlarında aşağıdaki ergonomi prensiplerine uyulur:
+     - **Sekme & Buton Kompaktlığı:** Sekmeler, filtreler ve butonlar asla uzun cümle/açıklama içeremez. En fazla 1-3 kelimelik net, kısa etiketler olmalıdır (Örn: "Akan Materyalli & Çatlak Zırhlı..." yerine doğrudan "Akan Detay").
+     - **Görsel Kalabalık ve Taşma (Clutter / Overflow):** Ekranı gereksiz yere dolduran, yatayda kaymaya zorlayan veya hantal duran başlık/metin yoğunluğu varsa derhal sadeleştirilmelidir.
+     - **İnsan Gözüyle Ön İnceleme:** Büyük revizyonlarda tasarımın göze şık, ferah ve modern gelip gelmediği kontrol edilir.
+     - **Gereksiz İnisiyatif Yasağı:** Kullanıcı sadece tespit veya geri bildirim yaptığında ("böyle kalsın", "neyse" dediğinde) açık talimat gelmedikçe kod düzenlemesi başlatılamaz.
+
 3. **Önceden Renk Paleti ve Tasarım Belirleme Kuralı (Color System First):**
    - Hiçbir projeye/sayfaya renkler ve tasarım token'ları önceden merkezi bir yerde tanımlanmadan başlanamaz.
    - Kodlama başlamadan önce: Temel arka plan, kart/yüzey tonları, birincil (primary) marka rengi, vurgu (accent), kenarlık (border) ve metin renkleri \`globals.css\` (CSS değişkenleri) veya \`tailwind.config\` / \`@theme\` içinde merkezi olarak tanımlanmalı ve yapılandırılmalıdır.
@@ -36,12 +38,13 @@ export const AGENTS_RULES_ONLY = `# Proje Kuralları (Developer Rules)
    - **KESİNLİKLE hiçbir kod değişikliği, dosya düzenlemesi veya otonom işlem yapma.**
    - Sadece ve sadece sorulan sorunun doğrudan cevabını ver.
    - Değişiklik veya aksiyon gerekiyorsa, bunu önce kullanıcıya söyle ve açık onay iste.
-2. **Görsel & Ergonomi Zorunlu Denetim Kuralı (Visual & UX Audit):**
-   Arayüzde (UI) yapılan her değişiklik sonrasında sadece "kod çalıştı mı / tıklandı mı" kontrolü YETMEZDİR. Aşağıdaki 4 maddeye göre eleştirel gözle bakılmalıdır:
-   - **Sekme & Buton Kompaktlığı:** Sekmeler, filtreler ve butonlar asla uzun cümle/açıklama içeremez. En fazla 1-3 kelimelik net, kısa etiketler olmalıdır (Örn: "Akan Materyalli & Çatlak Zırhlı..." yerine doğrudan "Akan Detay").
-   - **Görsel Kalabalık ve Taşma (Clutter / Overflow):** Ekranı gereksiz yere dolduran, yatayda kaymaya zorlayan veya hantal duran başlık/metin yoğunluğu varsa derhal sadeleştirilmelidir.
-   - **İnsan Gözüyle Ön İnceleme:** Ekran görüntüsü alındığında alt ajan sadece teknik başarıya değil; "Bu sayfa göze şık ve düzenli geliyor mu, yoksa kaba mı duruyor?" sorusuna dürüst yanıt vermelidir.
-   - **Gereksiz İnisiyatif Yasağı:** Kullanıcı sadece tespit veya geri bildirim yaptığında ("böyle kalsın", "neyse" dediğinde) açık talimat gelmedikçe kod düzenlemesi başlatılamaz.
+2. **Görsel & Ergonomi Denetim Kuralı (Visual & UX Audit):**
+   - **Küçük Rötuşlar (Hızlı İşlem):** Font, renk, metin, padding/margin gibi küçük stil ve rötuş işlemlerinde **kesinlikle ekran görüntüsü alma veya ağır tarayıcı denetimi döngüsüne girilmez**. Kod doğrudan, hızlı ve temiz bir şekilde uygulanır.
+   - **Büyük Sayfa / Bileşen Tasarımları (Kritik Denetim):** Sıfırdan sayfa tasarımı veya büyük bileşen revizyonlarında aşağıdaki ergonomi prensiplerine uyulur:
+     - **Sekme & Buton Kompaktlığı:** Sekmeler, filtreler ve butonlar asla uzun cümle/açıklama içeremez. En fazla 1-3 kelimelik net, kısa etiketler olmalıdır (Örn: "Akan Materyalli & Çatlak Zırhlı..." yerine doğrudan "Akan Detay").
+     - **Görsel Kalabalık ve Taşma (Clutter / Overflow):** Ekranı gereksiz yere dolduran, yatayda kaymaya zorlayan veya hantal duran başlık/metin yoğunluğu varsa derhal sadeleştirilmelidir.
+     - **İnsan Gözüyle Ön İnceleme:** Büyük revizyonlarda tasarımın göze şık, ferah ve modern gelip gelmediği kontrol edilir.
+     - **Gereksiz İnisiyatif Yasağı:** Kullanıcı sadece tespit veya geri bildirim yaptığında ("böyle kalsın", "neyse" dediğinde) açık talimat gelmedikçe kod düzenlemesi başlatılamaz.
 3. **Önceden Renk Paleti ve Tasarım Belirleme Kuralı (Color System First):**
    - Hiçbir projeye/sayfaya renkler ve tasarım token'ları önceden merkezi bir yerde tanımlanmadan başlanamaz.
    - Kodlama başlamadan önce: Temel arka plan, kart/yüzey tonları, birincil (primary) marka rengi, vurgu (accent), kenarlık (border) ve metin renkleri \`globals.css\` (CSS değişkenleri) veya \`tailwind.config\` / \`@theme\` içinde merkezi olarak tanımlanmalı ve yapılandırılmalıdır.
