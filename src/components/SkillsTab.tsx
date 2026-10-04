@@ -19,18 +19,21 @@ import {
   FolderTree,
   CheckCircle2,
   ExternalLink,
+  Pencil,
 } from "lucide-react";
 
 interface SkillsTabProps {
   skills: SkillItem[];
   onTriggerToast: (msg: string) => void;
   onOpenAddModal: () => void;
+  onEditSkill?: (skill: SkillItem) => void;
 }
 
 export default function SkillsTab({
   skills,
   onTriggerToast,
   onOpenAddModal,
+  onEditSkill,
 }: SkillsTabProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
@@ -236,6 +239,17 @@ export default function SkillsTab({
                       />
                     )}
 
+                    {onEditSkill && (
+                      <button
+                        type="button"
+                        onClick={() => onEditSkill(skill)}
+                        className="px-3.5 py-1.5 rounded text-xs font-mono font-bold bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/50 text-emerald-200 flex items-center gap-1.5 cursor-pointer transition-colors shadow-[0_0_15px_rgba(16,185,129,0.15)]"
+                      >
+                        <Pencil className="w-3.5 h-3.5 text-emerald-400" />
+                        <span>Düzenle</span>
+                      </button>
+                    )}
+
                     <button
                       type="button"
                       onClick={() => setExpandedPreview(!expandedPreview)}
@@ -439,6 +453,18 @@ export default function SkillsTab({
                       {skill.name}
                     </h3>
                   </div>
+
+                  {onEditSkill && (
+                    <button
+                      type="button"
+                      onClick={() => onEditSkill(skill)}
+                      className="p-1.5 rounded-lg text-zinc-400 hover:text-cyan-300 hover:bg-cyan-500/10 border border-white/5 hover:border-cyan-500/30 transition-colors cursor-pointer shrink-0"
+                      title="Skilli Düzenle"
+                      aria-label={`${skill.name} skillini düzenle`}
+                    >
+                      <Pencil className="w-3.5 h-3.5" />
+                    </button>
+                  )}
                 </div>
 
                 {/* Description */}

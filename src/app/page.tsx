@@ -8,6 +8,7 @@ import GarageTab from "@/components/GarageTab";
 import PromptStudioTab from "@/components/PromptStudioTab";
 import ChatAiTab from "@/components/ChatAiTab";
 import AddItemModal from "@/components/AddItemModal";
+import EditItemModal, { EditableItem } from "@/components/EditItemModal";
 import Toast from "@/components/Toast";
 
 import { initialSkills } from "@/data/initialSkills";
@@ -20,8 +21,12 @@ import { environmentPresets, cameraAnglePresets } from "@/data/presets";
 import {
   getSkills,
   addSkill,
+  updateSkill,
+  deleteSkill,
   getPrompts,
   addPrompt,
+  updatePrompt,
+  deletePrompt,
   getVehicles,
   addVehicle,
   getWraps,
@@ -79,11 +84,12 @@ export default function Home() {
   const [addModalInitialType, setAddModalInitialType] = useState<
     "skill" | "prompt" | "car" | "wrap"
   >("skill");
+  const [editItem, setEditItem] = useState<EditableItem | null>(null);
 
   // Hydration state guard
   const [isMounted, setIsMounted] = useState(false);
 
-  // Load from Supabase on mount (with fallback to localStorage/initial)
+  // Load from Supabase on mount (with fallback to localStorage/initial) + Live AGENTS.md
   useEffect(() => {
     setIsMounted(true);
 
@@ -96,7 +102,31 @@ export default function Home() {
           getWraps(),
         ]);
 
-        if (dbSkills && dbSkills.length > 0) setSkills(dbSkills);
+        let loadedSkills = dbSkills && dbSkills.length > 0 ? dbSkills : initialSkills;
+
+        // Fetch live AGENTS.md directly from server disk
+        try {
+          const res = await fetch("/api/agents-rules");
+          if (res.ok) {
+            const data = await res.json();
+            if (data.success && data.fullContent) {
+              loadedSkills = loadedSkills.map((s) => {
+                if (s.id === "skill-agents-md") {
+                  return {
+                    ...s,
+                    fullContent: data.fullContent,
+                    rulesOnly: data.rulesOnly,
+                  };
+                }
+                return s;
+              });
+            }
+          }
+        } catch (apiErr) {
+          console.warn("Could not sync live AGENTS.md, using default", apiErr);
+        }
+
+        setSkills(loadedSkills);
         if (dbPrompts && dbPrompts.length > 0) setPrompts(dbPrompts);
         if (dbVehicles && dbVehicles.length > 0) setVehicles(dbVehicles);
         if (dbWraps && dbWraps.length > 0) setWraps(dbWraps);
@@ -187,6 +217,77 @@ export default function Home() {
     const success = await addWrap(newWrap);
     if (success) {
       triggerToast(`"${newWrap.name}" başarıyla Supabase'e kaydedildi! ⚡`);
+    }
+  };
+
+  // Edit & Delete Handlers
+  const handleSaveEditedSkill = async (updatedSkill: SkillItem) => {
+    if (updatedSkill.id === "skill-agents-md") {
+      triggerToast("AGENTS.md dosyası diske kaydediliyor...");
+      try {
+        const res = await fetch("/api/agents-rules", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            fullContent: updatedSkill.fullContent,
+            rulesOnly: updatedSkill.rulesOnly,
+          }),
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          const syncedSkill: SkillItem = {
+            ...updatedSkill,
+            fullContent: data.fullContent,
+            rulesOnly: data.rulesOnly,
+          };
+          const next = skills.map((s) => (s.id === syncedSkill.id ? syncedSkill : s));
+          saveSkills(next);
+          triggerToast("AGENTS.md projedeki gerçek dosyaya ve siteye yazıldı! ⚡");
+          return;
+        }
+      } catch (err) {
+        console.error("Failed to write to AGENTS.md via API", err);
+      }
+    }
+
+    // Normal skill update
+    const next = skills.map((s) => (s.id === updatedSkill.id ? updatedSkill : s));
+    saveSkills(next);
+    triggerToast(`"${updatedSkill.name}" güncelleniyor...`);
+    const success = await updateSkill(updatedSkill);
+    if (success) {
+      triggerToast(`"${updatedSkill.name}" başarıyla güncellendi! ⚡`);
+    }
+  };
+
+  const handleDeleteSkill = async (skillId: string) => {
+    const next = skills.filter((s) => s.id !== skillId);
+    saveSkills(next);
+    triggerToast("Skill siliniyor...");
+    const success = await deleteSkill(skillId);
+    if (success) {
+      triggerToast("Skill başarıyla silindi.");
+    }
+  };
+
+  const handleSaveEditedPrompt = async (updatedPrompt: SocialPromptItem) => {
+    const next = prompts.map((p) => (p.id === updatedPrompt.id ? updatedPrompt : p));
+    savePrompts(next);
+    triggerToast(`"${updatedPrompt.title}" güncelleniyor...`);
+    const success = await updatePrompt(updatedPrompt);
+    if (success) {
+      triggerToast(`"${updatedPrompt.title}" başarıyla güncellendi! ⚡`);
+    }
+  };
+
+  const handleDeletePrompt = async (promptId: string) => {
+    const next = prompts.filter((p) => p.id !== promptId);
+    savePrompts(next);
+    triggerToast("Prompt siliniyor...");
+    const success = await deletePrompt(promptId);
+    if (success) {
+      triggerToast("Prompt başarıyla silindi.");
     }
   };
 
@@ -345,6 +446,7 @@ export default function Home() {
                   setAddModalInitialType("skill");
                   setIsAddModalOpen(true);
                 }}
+                onEditSkill={(skill) => setEditItem({ type: "skill", data: skill })}
               />
             )}
 
@@ -356,6 +458,7 @@ export default function Home() {
                   setAddModalInitialType("prompt");
                   setIsAddModalOpen(true);
                 }}
+                onEditPrompt={(prompt) => setEditItem({ type: "prompt", data: prompt })}
                 initialMode={promptsMode}
                 initialVehicle={promptsVehicle}
                 initialMaterial={promptsMaterial}
@@ -444,7 +547,7 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* Modal & Toast */}
+      {/* Modals & Toast */}
       <AddItemModal
         isOpen={isAddModalOpen}
         initialType={addModalInitialType}
@@ -453,6 +556,16 @@ export default function Home() {
         onAddPrompt={handleAddPrompt}
         onAddCar={handleAddCar}
         onAddWrap={handleAddWrap}
+      />
+
+      <EditItemModal
+        isOpen={!!editItem}
+        item={editItem}
+        onClose={() => setEditItem(null)}
+        onSaveSkill={handleSaveEditedSkill}
+        onDeleteSkill={handleDeleteSkill}
+        onSavePrompt={handleSaveEditedPrompt}
+        onDeletePrompt={handleDeletePrompt}
       />
 
       <Toast message={toastMessage} onClose={() => setToastMessage(null)} />

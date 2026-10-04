@@ -62,6 +62,39 @@ export async function addSkill(skill: SkillItem): Promise<boolean> {
   }
 }
 
+export async function updateSkill(skill: SkillItem): Promise<boolean> {
+  try {
+    const { error } = await supabase
+      .from("skills")
+      .update({
+        name: skill.name,
+        description: skill.description,
+        category: skill.category,
+        install_command: skill.installCommand,
+        usage_example: skill.usageExample,
+        tags: skill.tags,
+        docs: skill.docs,
+      })
+      .eq("id", skill.id);
+    if (error) throw error;
+    return true;
+  } catch (err) {
+    console.error("Supabase updateSkill error:", err);
+    return false;
+  }
+}
+
+export async function deleteSkill(id: string): Promise<boolean> {
+  try {
+    const { error } = await supabase.from("skills").delete().eq("id", id);
+    if (error) throw error;
+    return true;
+  } catch (err) {
+    console.error("Supabase deleteSkill error:", err);
+    return false;
+  }
+}
+
 async function seedSkills() {
   try {
     const payload = initialSkills.map((s) => ({
@@ -138,6 +171,43 @@ export async function addPrompt(item: SocialPromptItem): Promise<boolean> {
     return true;
   } catch (err) {
     console.error("Supabase addPrompt error:", err);
+    return false;
+  }
+}
+
+export async function updatePrompt(item: SocialPromptItem): Promise<boolean> {
+  try {
+    const { error } = await supabase
+      .from("prompts")
+      .update({
+        title: item.title,
+        tab_title: item.tabTitle,
+        prompt: item.prompt,
+        target_model: item.targetModel,
+        channel: item.channel,
+        aspect_ratio: item.aspectRatio,
+        parameters: item.parameters,
+        negative_prompt: item.negativePrompt,
+        tags: item.tags,
+        presets_title: item.presetsTitle,
+        presets: item.presets,
+      })
+      .eq("id", item.id);
+    if (error) throw error;
+    return true;
+  } catch (err) {
+    console.error("Supabase updatePrompt error:", err);
+    return false;
+  }
+}
+
+export async function deletePrompt(id: string): Promise<boolean> {
+  try {
+    const { error } = await supabase.from("prompts").delete().eq("id", id);
+    if (error) throw error;
+    return true;
+  } catch (err) {
+    console.error("Supabase deletePrompt error:", err);
     return false;
   }
 }

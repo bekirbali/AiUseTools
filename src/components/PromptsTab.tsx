@@ -17,6 +17,7 @@ import {
   Play,
   Check,
   FileText,
+  Pencil,
 } from "lucide-react";
 import CaptionTemplatesTab from "./CaptionTemplatesTab";
 
@@ -24,6 +25,7 @@ interface PromptsTabProps {
   prompts: SocialPromptItem[];
   onTriggerToast: (msg: string) => void;
   onOpenAddModal: () => void;
+  onEditPrompt?: (item: SocialPromptItem) => void;
   initialMode?: "prompts" | "captions";
   initialVehicle?: string;
   initialMaterial?: string;
@@ -33,6 +35,7 @@ export default function PromptsTab({
   prompts,
   onTriggerToast,
   onOpenAddModal,
+  onEditPrompt,
   initialMode = "prompts",
   initialVehicle = "",
   initialMaterial = "",
@@ -242,6 +245,19 @@ export default function PromptsTab({
                     onTriggerToast(`"${item.title}" promptu panoya kopyalandı! 🚀`)
                   }
                 />
+
+                {onEditPrompt && (
+                  <button
+                    type="button"
+                    onClick={() => onEditPrompt(item)}
+                    className="px-3 py-1.5 rounded-lg text-xs font-mono font-medium bg-white/[0.05] hover:bg-violet-500/20 text-zinc-300 hover:text-violet-200 border border-white/10 hover:border-violet-500/30 transition-colors flex items-center gap-1.5 cursor-pointer"
+                    title="Promptu Düzenle"
+                    aria-label={`${item.title} promptunu düzenle`}
+                  >
+                    <Pencil className="w-3.5 h-3.5 text-violet-400" />
+                    <span>Düzenle</span>
+                  </button>
+                )}
               </div>
             </div>
 
