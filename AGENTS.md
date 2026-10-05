@@ -27,4 +27,3 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
    - Hiçbir projeye/sayfaya renkler ve tasarım token'ları önceden merkezi bir yerde tanımlanmadan başlanamaz.
    - Kodlama başlamadan önce: Temel arka plan, kart/yüzey tonları, birincil (primary) marka rengi, vurgu (accent), kenarlık (border) ve metin renkleri `globals.css` (CSS değişkenleri) veya `tailwind.config` / `@theme` içinde merkezi olarak tanımlanmalı ve yapılandırılmalıdır.
    - Bileşenlerde gelişigüzel, sistemsiz inline hex kodları veya rastgele renkler kullanmak yerine bu merkezi palet üzerinden tutarlı şekilde ilerlenmelidir.
-
