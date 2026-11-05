@@ -16,6 +16,10 @@ export const metadata: Metadata = {
   title: "AI Studio // AI Skills, Prompts & Automotive Vault",
   description:
     "Yapay zeka asistanı: Agentic AI skilleri, tek tıkla terminal komutları, çoklu sosyal medya promptları, araç & kaplama stüdyosu ve akıllı AI asistanı.",
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon.svg",
+  },
 };
 
 export default function RootLayout({

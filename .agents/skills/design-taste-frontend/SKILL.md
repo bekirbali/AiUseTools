@@ -7,6 +7,7 @@ description: Anti-slop frontend skill for landing pages, portfolios, and redesig
 
 > Landing pages, portfolios, and redesigns. Not dashboards, not data tables, not multi-step product UI.
 > Every rule below is **contextual**. None of it fires automatically. First read the brief, then pull only what fits.
+> **Universal Decision Principle:** Make the best decision that will elevate all three: the user experience (UX), developer experience (DX), and agent experience (AX) always, without breaking anything.
 
 ---
 
@@ -232,6 +233,8 @@ LLMs default to "static successful state only." Always implement full cycles:
 * No placeholder-as-label. Ever.
 
 ### 4.7 Layout Discipline (Hard Rules. Failing any of these is shipping broken work)
+
+* **CUT TAGLINES, HELPER TEXT, AND SECONDARY LABELS (mandatory):** Cut taglines, helper text and secondary labels. If a screen needs them to make sense, fix the layout. An interface must communicate its purpose, structure, and affordances visually—never rely on explanatory micro-copy or secondary helper labels to paper over poor compositional layout.
 
 * **Hero MUST fit in the initial viewport.** Headline max 2 lines on desktop, subtext max **20 words** AND max 3-4 lines, CTAs visible without scroll. If the copy is too long: reduce font scale OR cut copy. If you cannot describe the value-prop in 20 words of subtext, the value-prop is unclear, not the rule too tight. Never let the hero overflow and force scroll to find the CTA.
 * **Hero font-scale discipline.** Plan font size and image size *together*. If the hero asset is large and the headline is more than 6 words, do not start at `text-7xl/text-8xl`. Default sensible range: `text-4xl md:text-5xl lg:text-6xl` for most heroes; `text-6xl md:text-7xl` only when the headline is 3-5 words. A 4-line hero headline is always a font-size error, never a copy-length error.
