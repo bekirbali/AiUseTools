@@ -17,7 +17,9 @@ export async function getSkills(): Promise<SkillItem[]> {
       }
       return initialSkills;
     }
-    const dbItems: SkillItem[] = data.map((d) => {
+    const dbItems: SkillItem[] = data
+      .filter((d) => d.id !== "__keepalive__" && d.category !== "system")
+      .map((d) => {
       const matchInit = initialSkills.find((init) => init.id === d.id);
       return {
         id: d.id,
